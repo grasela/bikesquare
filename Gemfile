@@ -5,7 +5,31 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#dotenv for keys
+gem 'dotenv-rails', '~> 2.4'
+#Devise gem for user Model 
+gem 'devise', '~> 4.4', '>= 4.4.3'
 
+#Geocoder gem required for google maps and location services 
+gem 'geocoder', '~> 1.4', '>= 1.4.7'
+
+# Pundit gem required for user authorisation 
+gem 'pundit', '~> 1.1'
+
+# Stripe gem for Stripe payments
+gem 'stripe', '~> 3.13'
+
+#font-awesome for icons
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+
+#shrine for uploading images
+gem 'shrine', '~> 2.11'
+
+#mini-magick to process the images and standarize them
+gem 'mini_magick', '~> 4.8'
+
+#country_select helper for sign up form (choose from a country)
+gem 'country_select', '~> 3.1', '>= 3.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
@@ -39,6 +63,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
 end
 
 group :development do
