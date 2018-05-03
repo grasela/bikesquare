@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bicycles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Brand</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Colour</th>
+      <th>Gender</th>
+      <th>Year</th>
+      <th>Serial no</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bicycles.each do |bicycle| %>
+      <tr>
+        <td><%= bicycle.title %></td>
+        <td><%= bicycle.price %></td>
+        <td><%= bicycle.description %></td>
+        <td><%= bicycle.brand %></td>
+        <td><%= bicycle.type %></td>
+        <td><%= bicycle.size %></td>
+        <td><%= bicycle.colour %></td>
+        <td><%= bicycle.gender %></td>
+        <td><%= bicycle.year %></td>
+        <td><%= bicycle.serial_no %></td>
+        <td><%= bicycle.user %></td>
+        <td><%= link_to 'Show', bicycle %></td>
+        <td><%= link_to 'Edit', edit_bicycle_path(bicycle) %></td>
+        <td><%= link_to 'Destroy', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bicycle', new_bicycle_path %>
