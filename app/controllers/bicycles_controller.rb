@@ -5,12 +5,16 @@ class BicyclesController < ApplicationController
   # GET /bicycles
   # GET /bicycles.json
   def index
-    @bicycles = Bicycle.all
+    @bicycles = Bicycle.where("user_id = #{current_user.id}")
+  
+
+
   end
 
   # GET /bicycles/1
   # GET /bicycles/1.json
   def show
+    @photos = Photo.where("bicycle_id = #{params[:id]}")
   end
 
   # GET /bicycles/new
@@ -20,12 +24,14 @@ class BicyclesController < ApplicationController
 
   # GET /bicycles/1/edit
   def edit
+    @bicycle = Bicycle.find(params[:id])
   end
 
   # POST /bicycles
   # POST /bicycles.json
   def create
     @bicycle = Bicycle.new(bicycle_params)
+    @bicycle.user = current_user
 
     respond_to do |format|
       if @bicycle.save
@@ -34,7 +40,7 @@ class BicyclesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @bicycle.errors, status: :unprocessable_entity }
-      end
+        end
     end
   end
 
@@ -70,6 +76,6 @@ class BicyclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bicycle_params
-      params.require(:bicycle).permit(:title, :price, :description, :brand, :type, :size, :colour, :gender, :year, :serial_no, :user_id)
+      params.require(:bicycle).permit(:title, :price, :description, :brand, :size, :colour, :gender, :year)
     end
 end

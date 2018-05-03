@@ -1,72 +1,68 @@
 <%= form_with(model: bicycle, local: true) do |form| %>
-  <% if bicycle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bicycle.errors.count, "error") %> prohibited this bicycle from being saved:</h2>
+    <% if bicycle.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(bicycle.errors.count, "error") %> prohibited this bicycle from being saved:</h2>
 
-      <ul>
-      <% bicycle.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% bicycle.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :bicycle_title %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :bicycle_title %>
-  </div>
+    <div class="field">
+        <%= form.label :price %>
+        <%= form.text_field :price, id: :bicycle_price %>
+    </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, id: :bicycle_price %>
-  </div>
+    <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :bicycle_description %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :bicycle_description %>
-  </div>
+    <div class="field">
+        <%= form.label :brand %>
+        <%= form.text_field :brand, id: :bicycle_brand %>
+    </div>
 
-  <div class="field">
-    <%= form.label :brand %>
-    <%= form.text_field :brand, id: :bicycle_brand %>
-  </div>
 
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type, id: :bicycle_type %>
-  </div>
+    <div class="field">
+        <%= form.label :size %>
+        <%= form.text_field :size, id: :bicycle_size %>
+    </div>
 
-  <div class="field">
-    <%= form.label :size %>
-    <%= form.text_field :size, id: :bicycle_size %>
-  </div>
+    <div class="field">
+        <%= form.label :colour %>
+        <%= form.text_field :colour, id: :bicycle_colour %>
+    </div>
 
-  <div class="field">
-    <%= form.label :colour %>
-    <%= form.text_field :colour, id: :bicycle_colour %>
-  </div>
+    <div class="field">
+        <%= form.label :gender %>
+        <%= form.text_field :gender, id: :bicycle_gender %>
+    </div>
 
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.text_field :gender, id: :bicycle_gender %>
-  </div>
+    <div class="field">
+        <%= form.label :year %>
+        <%= form.text_field :year, id: :bicycle_year %>
+    </div>
+    <% @bicycle.photos.each do |photo| %>
+        <%# <%= render '/photos/form', photo: photo, bicycle: @bicycle  %1> %>
+        <%=    image_tag photo.image_url(:medium) %>
+        <%= link_to 'Delete this photo', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %> 
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.text_field :year, id: :bicycle_year %>
-  </div>
+    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
 
-  <div class="field">
-    <%= form.label :serial_no %>
-    <%= form.text_field :serial_no, id: :bicycle_serial_no %>
-  </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :bicycle_user_id %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
 <% end %>

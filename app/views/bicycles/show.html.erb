@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
 <p>
   <strong>Title:</strong>
   <%= @bicycle.title %>
@@ -18,11 +18,6 @@
 <p>
   <strong>Brand:</strong>
   <%= @bicycle.brand %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @bicycle.type %>
 </p>
 
 <p>
@@ -45,15 +40,19 @@
   <%= @bicycle.year %>
 </p>
 
-<p>
-  <strong>Serial no:</strong>
-  <%= @bicycle.serial_no %>
-</p>
 
 <p>
   <strong>User:</strong>
   <%= @bicycle.user %>
 </p>
+<p>
+  <strong>Photos</strong>
+  <% @photos.each do |photo| %>
+  <%= image_tag photo.image_url(:medium) %>
+  <% end %>
+</p>
+
+
 
 <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
 <%= link_to 'Back', bicycles_path %>

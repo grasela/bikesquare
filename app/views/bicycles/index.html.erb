@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Bicycles</h1>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 <table>
   <thead>
     <tr>
@@ -14,8 +12,8 @@
       <th>Colour</th>
       <th>Gender</th>
       <th>Year</th>
-      <th>Serial no</th>
       <th>User</th>
+      <th>Photos</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -32,8 +30,10 @@
         <td><%= bicycle.colour %></td>
         <td><%= bicycle.gender %></td>
         <td><%= bicycle.year %></td>
-        <td><%= bicycle.serial_no %></td>
         <td><%= bicycle.user %></td>
+        <% bicycle.photos.each do |photo| %>
+            <td><%= image_tag photo.image_url(:medium) %> </td>
+        <% end %>
         <td><%= link_to 'Show', bicycle %></td>
         <td><%= link_to 'Edit', edit_bicycle_path(bicycle) %></td>
         <td><%= link_to 'Destroy', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
