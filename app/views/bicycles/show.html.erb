@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
+<% if user_signed_in? && current_user.id == @bicycle.user_id %>
+    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
+<% end %>
 <p>
   <strong>Title:</strong>
   <%= @bicycle.title %>
@@ -43,7 +45,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @bicycle.user %>
+  <%= @bicycle.user.email %>
 </p>
 <p>
   <strong>Photos</strong>
@@ -53,6 +55,7 @@
 </p>
 
 
-
-<%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
-<%= link_to 'Back', bicycles_path %>
+<% if user_signed_in? && current_user.id == @bicycle.user_id %>
+    <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
+<% end %>
+<%= link_to 'Back', root_path %>

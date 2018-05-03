@@ -31,12 +31,12 @@
         <td><%= bicycle.gender %></td>
         <td><%= bicycle.year %></td>
         <td><%= bicycle.user.email %></td>
-        <% bicycle.photos.each do |photo| %>
-            <td><%= image_tag photo.image_url(:medium) %> </td>
-        <% end %>
-        <td><%= link_to 'Show', bicycle %></td>
-        <td><%= link_to 'Edit', edit_bicycle_path(bicycle) %></td>
-        <td><%= link_to 'Destroy', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= image_tag bicycle.photos.first.image_url(:small) %></td>
+        <td><%= link_to "SHOW BIKE", bicycle_path(bicycle.id)%> </td>
+
+        <%# <% bicycle.photos.each do |photo| %1> %>
+        <%#     <td><%= image_tag photo.image_url(:small) %1> </td> %>
+        <%# <% end %1> %>
       </tr>
     <% end %>
   </tbody>
@@ -44,4 +44,3 @@
 
 <br>
 
-<%= link_to 'New Bicycle', new_bicycle_path %>
