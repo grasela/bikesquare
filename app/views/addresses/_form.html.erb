@@ -1,0 +1,61 @@
+<%= form_with(model: address, local: true) do |form| %>
+  <% if address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :house_number %>
+    <%= form.text_field :house_number, id: :address_house_number, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street_number %>
+    <%= form.text_field :street_number, id: :address_street_number, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street %>
+    <%= form.text_field :street, id: :address_street, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suburb %>
+    <%= form.text_field :suburb, id: :address_suburb, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :address_city, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.select :state, ['','NSW', 'VIC', 'QLD', 'SA', 'WA', 'NT', 'TAS'], id: :address_state, required: true %>
+  </div>
+
+  <div class="field">
+      <%= form.label :country_code %>
+    <%= form.country_select :country_code, id: :address_country_code, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postal_code %>
+    <%= form.number_field :postal_code, id: :address_postal_code, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: @user.id , id: :address_user_id, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

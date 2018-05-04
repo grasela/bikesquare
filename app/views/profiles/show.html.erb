@@ -19,9 +19,20 @@
   <strong>Username:</strong>
   <%= @profile.username %>
 </p>
+<%= link_to 'Edit Profile Information', edit_profile_path(@profile) %> |
 
 <p>
+<strong>Addresses</strong>
+<% @addresses.each do |a| %>
+    <p> <%= a.address %></p>
+<% end %>
+    
+    </p>
+<p>
+<%= link_to "Add location", new_address_path(user_id: @user.id) %>
+
+</p>
+<p><%= link_to 'Edit Addresses', addresses_path %> |
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', bicycles_path %>
+

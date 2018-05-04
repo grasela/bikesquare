@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  def address
+    [house_number, street_number, street, suburb, city, state, postal_code, country_code].compact.join(' ')
+  end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
