@@ -30,7 +30,7 @@
         <td><%= bicycle.colour %></td>
         <td><%= bicycle.gender %></td>
         <td><%= bicycle.year %></td>
-        <td><%= bicycle.user.email %></td>
+        <td><%= bicycle.user.profile.username %></td>
         <% bicycle.photos.each do |photo| %>
             <td><%= image_tag photo.image_url(:medium) %> </td>
         <% end %>

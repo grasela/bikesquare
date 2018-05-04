@@ -14,12 +14,12 @@
 
       <%= form.label :image %>
       <%= form.hidden_field :image, value: photo.cached_image_data %>
-        <%= form.file_field :image %>
+        <%= form.file_field :image, required: true %>
     </div>
 
     <div class="field">
         <%# <%= form.label :bicycle_id %1> %>
-        <%= form.hidden_field :bicycle_id, value:  bicycle.id %>
+        <%= form.hidden_field :bicycle_id, value:  bicycle.id, required: true %>
     </div>
 
 

@@ -10,16 +10,19 @@
 
     <body>
             <%= link_to "bikeSquare", pages_home_path %>
-            <%= link_to 'New Bicycle', new_bicycle_path %>
 
 
         <% if user_signed_in? %>
             <%= link_to "My bicycles", bicycles_path %>
+            <% unless current_user.profile.nil? %>
+                <%= link_to "My profile", profile_path(current_user.profile.id)  %>
+            <% end %>
 
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
             <%= current_user.email %>
 
         <% else %>
+            <%= link_to 'New Bicycle', new_bicycle_path %>
             <%= link_to "Sign in", new_user_session_path %>
         <% end %>
 

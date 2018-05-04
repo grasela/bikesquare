@@ -28,6 +28,8 @@ gem 'shrine', '~> 2.11'
 #mini-magick to process the images and standarize them
 gem 'mini_magick', '~> 4.8'
 
+gem 'image_processing', '~> 1.2'
+
 #country_select helper for sign up form (choose from a country)
 gem 'country_select', '~> 3.1', '>= 3.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -1,20 +1,19 @@
 class BicyclesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_bicycle, only: [:show, :edit, :update, :destroy]
+  before_action :check_profile?
+
 
   # GET /bicycles
   # GET /bicycles.json
   def index
-    @bicycles = Bicycle.where("user_id = #{current_user.id}")
-  
-
-
+    @bicycles  = policy_scope(Bicycle)
   end
 
   # GET /bicycles/1
   # GET /bicycles/1.json
   def show
-    @photos = Photo.where("bicycle_id = #{params[:id]}")
+    @photos = @bicycle.photos
   end
 
   # GET /bicycles/new
@@ -40,7 +39,7 @@ class BicyclesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @bicycle.errors, status: :unprocessable_entity }
-        end
+      end
     end
   end
 
@@ -56,6 +55,7 @@ class BicyclesController < ApplicationController
         format.json { render json: @bicycle.errors, status: :unprocessable_entity }
       end
     end
+    authorize @bicycle
   end
 
   # DELETE /bicycles/1
@@ -69,13 +69,15 @@ class BicyclesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bicycle
-      @bicycle = Bicycle.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bicycle
+    @bicycle = Bicycle.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def bicycle_params
-      params.require(:bicycle).permit(:title, :price, :description, :brand, :size, :colour, :gender, :year)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def bicycle_params
+    params.require(:bicycle).permit(:title, :price, :description, :brand, :size, :colour, :gender, :year)
+  end
+
+
 end

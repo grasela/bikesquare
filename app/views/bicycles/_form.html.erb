@@ -13,43 +13,43 @@
 
     <div class="field">
         <%= form.label :title %>
-        <%= form.text_field :title, id: :bicycle_title %>
+        <%= form.text_field :title, id: :bicycle_title, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :price %>
-        <%= form.text_field :price, id: :bicycle_price %>
+        <%= form.text_field :price, id: :bicycle_price, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :description %>
-        <%= form.text_area :description, id: :bicycle_description %>
+        <%= form.text_area :description, id: :bicycle_description, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :brand %>
-        <%= form.text_field :brand, id: :bicycle_brand %>
+        <%= form.text_field :brand, id: :bicycle_brand, required: true %>
     </div>
 
 
     <div class="field">
         <%= form.label :size %>
-        <%= form.text_field :size, id: :bicycle_size %>
+        <%= form.text_field :size, id: :bicycle_size, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :colour %>
-        <%= form.text_field :colour, id: :bicycle_colour %>
+        <%= form.text_field :colour, id: :bicycle_colour, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :gender %>
-        <%= form.text_field :gender, id: :bicycle_gender %>
+        <%= form.text_field :gender, id: :bicycle_gender, required: true %>
     </div>
 
     <div class="field">
         <%= form.label :year %>
-        <%= form.text_field :year, id: :bicycle_year %>
+        <%= form.text_field :year, id: :bicycle_year, required: true %>
     </div>
     <% @bicycle.photos.each do |photo| %>
         <%# <%= render '/photos/form', photo: photo, bicycle: @bicycle  %1> %>

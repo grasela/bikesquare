@@ -1,61 +1,62 @@
 <p id="notice"><%= notice %></p>
-<% if user_signed_in? && current_user.id == @bicycle.user_id %>
+<% if policy(@bicycle).update? %>
     <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
 <% end %>
+
 <p>
-  <strong>Title:</strong>
-  <%= @bicycle.title %>
+<strong>Title:</strong>
+<%= @bicycle.title %>
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @bicycle.price %>
+<strong>Price:</strong>
+<%= @bicycle.price %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @bicycle.description %>
+<strong>Description:</strong>
+<%= @bicycle.description %>
 </p>
 
 <p>
-  <strong>Brand:</strong>
-  <%= @bicycle.brand %>
+<strong>Brand:</strong>
+<%= @bicycle.brand %>
 </p>
 
 <p>
-  <strong>Size:</strong>
-  <%= @bicycle.size %>
+<strong>Size:</strong>
+<%= @bicycle.size %>
 </p>
 
 <p>
-  <strong>Colour:</strong>
-  <%= @bicycle.colour %>
+<strong>Colour:</strong>
+<%= @bicycle.colour %>
 </p>
 
 <p>
-  <strong>Gender:</strong>
-  <%= @bicycle.gender %>
+<strong>Gender:</strong>
+<%= @bicycle.gender %>
 </p>
 
 <p>
-  <strong>Year:</strong>
-  <%= @bicycle.year %>
+<strong>Year:</strong>
+<%= @bicycle.year %>
 </p>
 
 
 <p>
-  <strong>User:</strong>
-  <%= @bicycle.user.email %>
+<strong>User:</strong>
+<%= @bicycle.user.profile.username %>
 </p>
 <p>
-  <strong>Photos</strong>
-  <% @photos.each do |photo| %>
-  <%= image_tag photo.image_url(:medium) %>
-  <% end %>
+<strong>Photos</strong>
+<% @photos.each do |photo| %>
+    <%= image_tag photo.image_url(:medium) %>
+<% end %>
 </p>
 
 
-<% if user_signed_in? && current_user.id == @bicycle.user_id %>
+<% if policy(@bicycle).update? %>
     <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
 <% end %>
 <%= link_to 'Back', root_path %>

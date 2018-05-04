@@ -5,31 +5,35 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.all
-
+    authorize @photos
 
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
+    authorize @photo
   end
 
   # GET /photos/new
   def new
     @photo = Photo.new
     @bicycle = Bicycle.find(params[:bicycle_id])
+    
   end
 
   # GET /photos/1/edit
   def edit
       @photo = Photo.find(params[:id])
       @bicycle = Bicycle.find(photo.bicycle_id)
+      authorize @photo
   end
 
   # POST /photos
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
+    authorize @photo
 
 
     respond_to do |format|
@@ -55,6 +59,7 @@ class PhotosController < ApplicationController
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
+    authorize @photo
   end
 
   # DELETE /photos/1
@@ -65,6 +70,7 @@ class PhotosController < ApplicationController
       format.html { redirect_to edit_bicycle_path(@photo.bicycle_id), notice: 'Photo was successfully destroyed.' }
       format.json { head :no_content }
     end
+    authorize @photo
   end
 
   private
