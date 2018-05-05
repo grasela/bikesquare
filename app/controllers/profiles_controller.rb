@@ -12,6 +12,25 @@ class ProfilesController < ApplicationController
   def show
     @addresses = @profile.user.addresses
     @reviews = @profile.user.reviews
+
+    def user_rating(reviews)
+      all_ratings= []
+      reviews.each do |review|
+        rating = review.rating
+        all_ratings.push rating
+      end
+      max = all_ratings.count * 5
+      sum = all_ratings.sum
+      percentage =  sum * 100/max
+      result = percentage * 5/100.00
+      return result
+
+    end
+
+    @user_rating = user_rating(@reviews)
+
+
+
   end
 
   # GET /profiles/new
@@ -68,16 +87,16 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id])
-    end
-    def set_user 
-      @user = @profile.user
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+  def set_user 
+    @user = @profile.user
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :avatar, :username, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def profile_params
+    params.require(:profile).permit(:first_name, :last_name, :avatar, :username, :user_id)
+  end
 end
