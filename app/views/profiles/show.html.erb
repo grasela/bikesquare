@@ -25,6 +25,12 @@
 <strong>Addresses</strong>
 <% @addresses.each do |a| %>
     <p> <%= a.address %></p>
+
+    <div>
+        <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{a.latitude},#{a.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{@profile.first_name.first}%7C#{a.latitude},#{a.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
+
+
+ </div>
 <% end %>
     
     </p>

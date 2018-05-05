@@ -13,6 +13,8 @@ class AddressesController < ApplicationController
   # GET /addresses/1.json
   def show
     @full_address = @address.address
+    @lon = @address.longitude
+    @lat = @address.latitude 
     authorize @address
   end
 
