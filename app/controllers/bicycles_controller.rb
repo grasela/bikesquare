@@ -14,6 +14,7 @@ class BicyclesController < ApplicationController
   # GET /bicycles/1.json
   def show
     @photos = @bicycle.photos
+    @queries = @bicycle.queries
   end
 
   # GET /bicycles/new
