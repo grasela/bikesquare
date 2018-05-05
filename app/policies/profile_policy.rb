@@ -13,7 +13,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || record.user == user
+    user.nil? || record.user != user
   end   
 
   def edit?
@@ -21,7 +21,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || record.user == user
+    user.nil? || record.user != user
   end
 
   def new?

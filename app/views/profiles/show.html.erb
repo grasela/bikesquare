@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
+<strong>First name:</strong>
+<%= @profile.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
+<strong>Last name:</strong>
+<%= @profile.last_name %>
 </p>
 
 <p>
-  <strong>Avatar data:</strong>
-  <%= image_tag @profile.avatar_url(:small) %>
+<strong>Avatar data:</strong>
+<%= image_tag @profile.avatar_url(:small) %>
 </p>
 
 <p>
-  <strong>Username:</strong>
-  <%= @profile.username %>
+<strong>Username:</strong>
+<%= @profile.username %>
 </p>
 <%= link_to 'Edit Profile Information', edit_profile_path(@profile) %> |
 
@@ -25,20 +25,36 @@
 <strong>Addresses</strong>
 <% @addresses.each do |a| %>
     <p> <%= a.address %></p>
-
     <div>
         <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{a.latitude},#{a.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{@profile.first_name.first}%7C#{a.latitude},#{a.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
 
 
- </div>
+    </div>
 <% end %>
-    
-    </p>
-<p>
-<%= link_to "Add location", new_address_path(user_id: @user.id) %>
 
 </p>
-<p><%= link_to 'Edit Addresses', addresses_path %> |
+<p>
+
+<% if policy(@profile).update? %>
+    <%= link_to "Add location", new_address_path(user_id: @user.id) %>
+
+    <%= link_to 'Edit', edit_profile_path(@profile) %>
+    <%= link_to 'Edit Addresses', addresses_path %> |
+<% end %>
+<p>
+<strong>Reviews</strong>
+<% already_reviewed = [] %>
+<% @reviews.each do |review| %>
+    <%   already_reviewed.push review.reviewer %> 
+    <p><%= review.rating %> stars </p>
+    <p><%= review.content %></p>
+    <p><%= review.reviewer.profile.username %></p>
+<% end %>
+
+<% unless current_user.in?(already_reviewed) || current_user == @profile.user ||current_user.nil? %>
+<%= link_to "Review #{@profile.username} ", new_review_path(reviewed_user: @profile.user, reviewer: current_user, user_id: @profile.user) %> 
 </p>
+<% end  %>
+
 
 

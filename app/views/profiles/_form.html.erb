@@ -22,9 +22,12 @@
     </div>
 
     <div class="field">
+        <% if profile.avatar_data.present? %>
+        <%= image_tag profile.avatar_url(:small) %>
+    <% end %>
         <% form.hidden_field :image, value: profile.cached_avatar_data %>
         <%= form.label :avatar %>
-        <%= form.file_field :avatar, id: :profile_avatar_data, required: true %>
+        <%= form.file_field :avatar, id: :profile_avatar_data %>
     </div>
 
     <div class="field">

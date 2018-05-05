@@ -19,12 +19,14 @@
       <tr>
         <td><%= profile.first_name %></td>
         <td><%= profile.last_name %></td>
-        <td><%= profile.avatar_data %></td>
+        <td><%= image_tag profile.avatar_url(:small) %></td>
         <td><%= profile.username %></td>
         <td><%= profile.user %></td>
         <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if policy(profile).update? %>
+
+            <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

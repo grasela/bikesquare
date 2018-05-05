@@ -4,17 +4,14 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    redirect_to root_path unless current_user.admin?
+    @profiles = Profile.all
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    authorize @profile
     @addresses = @profile.user.addresses
-
-
-
+    @reviews = @profile.user.reviews
   end
 
   # GET /profiles/new

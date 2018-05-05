@@ -60,3 +60,5 @@
     <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
 <% end %>
 <%= link_to 'Back', root_path %>
+
+<%= link_to "#{@bicycle.user.profile.username} profile ", profile_path(@bicycle.user.id) %>
