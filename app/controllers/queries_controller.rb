@@ -46,7 +46,7 @@ class QueriesController < ApplicationController
   def update
     @bicycle = Bicycle.find(@query.bicycle_id)
     respond_to do |format|
-      if @query.update(query_params)
+      if @query.update(answer_params)
         format.html { redirect_to @bicycle, notice: 'Query was successfully updated.' }
         format.json { render :show, status: :ok, location: @query }
       else
@@ -74,6 +74,9 @@ class QueriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def query_params
+      params.require(:query).permit(:question, :bicycle_id, :answer, :user_id)
+    end
+    def answer_params
       params.require(:query).permit(:question, :bicycle_id, :answer)
     end
 end

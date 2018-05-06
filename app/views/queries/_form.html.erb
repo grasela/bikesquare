@@ -31,6 +31,9 @@
     <%= form.label :bicycle_id %>
     <%= form.hidden_field :bicycle_id, value: bicycle.id, id: :query_bicycle_id %>
   </div>
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id, id: :query_user_id %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

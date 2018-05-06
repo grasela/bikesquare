@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p> 
 
-    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) if policy(@bicycle).update? %>
-    <%= link_to 'Ask a question', new_query_path(bicycle_id: @bicycle) unless policy(@bicycle).no_questions  %>
 
 <p>
 <strong>Title:</strong>
@@ -50,6 +48,8 @@
 </p>
 <p>
 <strong>Photos</strong>
+
+<p>    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) if policy(@bicycle).update? %></p>
 <% @photos.each do |photo| %>
     <%= image_tag photo.image_url(:medium) %>
 <% end %>
@@ -64,13 +64,21 @@
 <%= link_to "#{@bicycle.user.profile.username} profile ", profile_path(@bicycle.user.id) %>
 
 <p><strong>Questions and Answers </strong> </p>
+<p id="notice"><%= notice %></p> 
+
+    <%= link_to 'Ask a question', new_query_path(bicycle_id: @bicycle) unless policy(@bicycle).no_questions  %>
+
+<p>
 <% @queries.each do |query| %>
-    <p>Question</p>
-    <%= query.question %>
+    <p><strong>  <%= query.user.profile.username %></strong> </p>
+    <p><%= query.question %></p>
     <% if query.answer.present? %>
+        <strong>     <%= @owner.username %> </strong>
+
         <p><%= query.answer %> </p>
     <% else %>
-        <p>Question is awaiting response from <%= @bicycle.user.profile.username%> </p>
+        <p>Question is awaiting response from <%= @owner.username %> </p>
+    
     <% end %>
     <% if  @bicycle.user == current_user && query.answer.nil?  %>
         <%= link_to "Answer this question", edit_query_path(query) %> 
