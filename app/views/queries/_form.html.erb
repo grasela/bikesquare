@@ -1,0 +1,38 @@
+<%= form_with(model: query, local: true) do |form| %>
+  <% if query.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(query.errors.count, "error") %> prohibited this query from being saved:</h2>
+
+      <ul>
+      <% query.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if current_user != bicycle.user %>
+  <div class="field">
+    <%= form.label :question %>
+    <%= form.text_area :question, id: :query_question, required: true %>
+  </div>
+  <% elsif current_user == bicycle.user %>
+      <%= query.question %>
+  <div class="field">
+    <%= form.label :answer %>
+    <%= form.text_area :answer, id: :query_answer %>
+  </div>
+  <% else %> 
+  redirect_to root  
+  flash[:message] = "your not signed in"
+
+  <% end %> 
+
+  <div class="field">
+    <%= form.label :bicycle_id %>
+    <%= form.hidden_field :bicycle_id, value: bicycle.id, id: :query_bicycle_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

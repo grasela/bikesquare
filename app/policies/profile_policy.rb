@@ -13,7 +13,10 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def update?
-    user.nil? || record.user != user
+    if user.present?
+      user.admin? || record.user == user
+    else 
+    end   
   end   
 
   def edit?

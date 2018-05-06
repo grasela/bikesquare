@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
-<% if policy(@bicycle).update? %>
-    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
-<% end %>
+<p id="notice"><%= notice %></p> 
+
+    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) if policy(@bicycle).update? %>
+    <%= link_to 'Ask a question', new_query_path(bicycle_id: @bicycle) unless policy(@bicycle).no_questions  %>
 
 <p>
 <strong>Title:</strong>
@@ -62,3 +62,23 @@
 <%= link_to 'Back', root_path %>
 
 <%= link_to "#{@bicycle.user.profile.username} profile ", profile_path(@bicycle.user.id) %>
+
+<p><strong>Questions and Answers </strong> </p>
+<% @queries.each do |query| %>
+    <p>Question</p>
+    <%= query.question %>
+    <% if query.answer.present? %>
+        <p><%= query.answer %> </p>
+    <% else %>
+        <p>Question is awaiting response from <%= @bicycle.user.profile.username%> </p>
+    <% end %>
+    <% if  @bicycle.user == current_user && query.answer.nil?  %>
+        <%= link_to "Answer this question", edit_query_path(query) %> 
+    <% else %>
+
+
+    <% end %>
+
+
+<% end %>
+

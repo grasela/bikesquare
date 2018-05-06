@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @query.question %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @query.answer %>
+</p>
+
+<p>
+  <strong>Bicycle:</strong>
+  <%= @query.bicycle %>
+</p>
+
+<%= link_to 'Edit', edit_query_path(@query) %> |
+<%= link_to 'Back', queries_path %>

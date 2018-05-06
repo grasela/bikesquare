@@ -9,10 +9,16 @@ class BicyclePolicy < ApplicationPolicy
     end
   end
 
+  def no_questions
+    return true if user == nil || record.user == user
+    
+
+  end
+
   def update?
     if user.present?
       user.admin? || record.user == user
-    else 
+    elsif user.nil?
     end   
   end
   def edit?
@@ -24,6 +30,12 @@ class BicyclePolicy < ApplicationPolicy
   end
 
   def new?
+   
+
+  end
+
+  def no_questions?
+    record.user == user
 
   end
 

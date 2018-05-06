@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505063631) do
+ActiveRecord::Schema.define(version: 20180505101813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 20180505063631) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "queries", force: :cascade do |t|
+    t.text "question"
+    t.text "answer"
+    t.bigint "bicycle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bicycle_id"], name: "index_queries_on_bicycle_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "content"
     t.bigint "reviewer_id"
@@ -108,4 +117,5 @@ ActiveRecord::Schema.define(version: 20180505063631) do
   add_foreign_key "bicycles", "users"
   add_foreign_key "photos", "bicycles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "queries", "bicycles"
 end
