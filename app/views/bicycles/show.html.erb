@@ -2,6 +2,13 @@
 
 
 <p>
+<strong> Posted: </strong>
+<%= @bicycle.created_at.strftime("%d %b %y") %>
+</p>
+<p>
+<strong> Updated: </strong>
+<%= @bicycle.updated_at.strftime("%d %b %y") %>
+</p>
 <strong>Title:</strong>
 <%= @bicycle.title %>
 </p>
@@ -43,10 +50,9 @@
 
 
 <p>
-<strong>User:</strong>
-<%= @bicycle.user.profile.username %>
+<strong>Owner:</strong>
+<%= link_to "#{@owner.username} ", profile_path(@bicycle.user.id) %>
 </p>
-<p>
 <strong>Photos</strong>
 
 <p>    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) if policy(@bicycle).update? %></p>
@@ -59,9 +65,7 @@
 <% if policy(@bicycle).update? %>
     <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
 <% end %>
-<%= link_to 'Back', root_path %>
 
-<%= link_to "#{@bicycle.user.profile.username} profile ", profile_path(@bicycle.user.id) %>
 
 <p><strong>Questions and Answers </strong> </p>
 <p id="notice"><%= notice %></p> 
@@ -71,6 +75,7 @@
 <p>
 <% @queries.each do |query| %>
     <p><strong>  <%= query.user.profile.username %></strong> </p>
+    <p> <%= query.created_at.strftime("%d %b %y")%> </p>
     <p><%= query.question %></p>
     <% if query.answer.present? %>
         <strong>     <%= @owner.username %> </strong>
