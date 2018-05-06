@@ -16,6 +16,7 @@ class BicyclesController < ApplicationController
     @photos = @bicycle.photos
     @queries = @bicycle.queries
     @owner = @bicycle.user.profile
+    @purchase = Purchase.new
   end
 
   # GET /bicycles/new

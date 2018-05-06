@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180506012048) do
+ActiveRecord::Schema.define(version: 20180506062122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20180506012048) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_bicycles_on_address_id"
     t.index ["user_id"], name: "index_bicycles_on_user_id"
   end
 
@@ -66,6 +68,17 @@ ActiveRecord::Schema.define(version: 20180506012048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.boolean "pickup"
+    t.string "delivery_address"
+    t.bigint "user_id"
+    t.bigint "bicycle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bicycle_id"], name: "index_purchases_on_bicycle_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "queries", force: :cascade do |t|
@@ -116,9 +129,12 @@ ActiveRecord::Schema.define(version: 20180506012048) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "bicycles", "addresses"
   add_foreign_key "bicycles", "users"
   add_foreign_key "photos", "bicycles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "purchases", "bicycles"
+  add_foreign_key "purchases", "users"
   add_foreign_key "queries", "bicycles"
   add_foreign_key "queries", "users"
 end

@@ -1,0 +1,8 @@
+<strong><p>Purchase summary</p></strong>
+<p>Buyer: <%= @buyer   %></p>
+<p>Seller: <%= @seller %></p>
+<p>Bike: <%= @bicycle %></p>
+<p>Delivery address: <%= @delivery_address %></p>
+<p>Price:  <%= number_to_currency(@price, unit: "AUD $") %> </p>
+
+<p>STRIPE BUTTON SUBMIT</p>

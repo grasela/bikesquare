@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :done_reviews,    class_name: "Review", foreign_key: "reviewer_id"
   has_many :received_reviews, class_name: "Review", foreign_key: "reviewed_user_id"
   has_many :reviews, class_name: "Review", foreign_key: "user_id"
+  has_many :purchases
 end
