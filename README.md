@@ -64,5 +64,8 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 * country_select
 * aws-sdk
 ## 12. Challenges 
+How to create 2 foreign keys for reviews relating to the same table user , creating reviewer and reviewed user 
+
+adding radio inputs to bicycle form which allows for selecting already saved user address or adding a new address 
 ## 13. Coding 
 ## 14. Final Product 
