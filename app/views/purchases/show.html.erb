@@ -1,8 +1,29 @@
+<%= flash[:notice] %>
 <strong><p>Purchase summary</p></strong>
-<p>Buyer: <%= @buyer   %></p>
-<p>Seller: <%= @seller %></p>
-<p>Bike: <%= @bicycle %></p>
+<p>Buyer: <%= @buyer.profile.username   %></p>
+<p>Seller: <%= @seller.profile.username %></p>
+<p>Bike: <%= @bicycle.title %></p>
 <p>Delivery address: <%= @delivery_address %></p>
 <p>Price:  <%= number_to_currency(@price, unit: "AUD $") %> </p>
 
-<p>STRIPE BUTTON SUBMIT</p>
+<% if @purchase.payed_at.nil? %>
+<%= form_tag charge_purchase_path do %>
+    <article>
+        <% if flash[:error].present? %>
+            <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+            </div>
+        <% end %>
+        <label class="amount">
+            <span>Amount: <%= @price %></span>
+        </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                                          data-description=<%= @bicycle.title %>
+                                                          data-amount= <%= @amount %>
+                                                          data-email= <%= @buyer.email %>
+                                                          data-locale="auto"></script>
+<% end %>
+<%end %>

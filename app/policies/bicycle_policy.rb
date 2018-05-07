@@ -10,8 +10,11 @@ class BicyclePolicy < ApplicationPolicy
   end
 
   def no_questions
-    return true if user == nil || record.user == user
     
+
+  end
+
+  def index?
 
   end
 
