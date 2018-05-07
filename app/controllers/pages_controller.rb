@@ -16,4 +16,18 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  
+  def contact_email
+    user = current_user
+    ContactMailer.send_contact_email(user: user, params: email_params).deliver_now
+    
+    redirect_to root_path
+  end
+
+  private 
+  def email_params
+    params.require(:contact).permit(:name, :message)
+
+  end
 end

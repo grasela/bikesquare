@@ -1,0 +1,19 @@
+<%= form_for :contact do |f| %>
+    <p>
+    <%= f.label :name %>
+    <%= f.text_field  :name, placeholder: "name" %>
+    </p>
+
+    <p>
+    <%= f.label :message %>
+    <%= f.text_field  :message, placeholder: "message" %>
+    </p>
+
+    <p>
+    <%= f.submit 'Submit' %>
+    </p>
+
+
+
+<% end %>
+
