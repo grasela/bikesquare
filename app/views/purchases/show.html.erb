@@ -6,7 +6,7 @@
 <p>Delivery address: <%= @delivery_address %></p>
 <p>Price:  <%= number_to_currency(@price, unit: "AUD $") %> </p>
 
-<% if @purchase.payed_at.nil? %>
+<% if @purchase.payed_at.nil?  %>
 <%= form_tag charge_purchase_path do %>
     <article>
         <% if flash[:error].present? %>

@@ -65,7 +65,7 @@
 <% if policy(@bicycle).update? %>
     <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
 <% end %>
-<% unless policy(@bicycle).no_questions  %>
+<% if current_user != @bicycle.user  %>
 <%= form_for @purchase, :url => purchases_path(@purchase), :html => {:method => :post} do |f| %>
   <%= f.hidden_field :pickup, value: false %>
   <%= f.hidden_field :delivery_address, value: current_user.addresses.first.id %>

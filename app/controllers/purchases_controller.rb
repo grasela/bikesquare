@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   end
   def create
     @purchase = Purchase.new(purchase_params)
-    @purchase.save
+    @purchase.save!
     redirect_to purchase_path(@purchase)
   end
   def show
