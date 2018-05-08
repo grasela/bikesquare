@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
 
     end
 
-    @user_rating = user_rating(@reviews)
+    @user_rating = user_rating(@reviews) if @reviews == nil 
 
 
 
