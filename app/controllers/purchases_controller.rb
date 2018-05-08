@@ -1,6 +1,12 @@
 class PurchasesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :session_expired
+  
 
+  def index 
+    @purchases  = Purchase.all.where(user: current_user)
+
+
+  end
   def new
   end
   def create

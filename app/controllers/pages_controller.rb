@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     end
 ### search bar ###
     if params[:search]
-      @bicycles = Bicycle.search(params[:search]).order("created_at DESC")
+      @bicycles = Bicycle.search(params[:search]).order("created_at DESC") 
     else
       @bicycles = @bicycles
     end

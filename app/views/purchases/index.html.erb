@@ -1,2 +1,12 @@
-<h1>Purchases#index</h1>
-<p>Find me in app/views/purchases/index.html.erb</p>
+<%= flash[:notice] %>
+
+<h1>My purchases</h1>
+
+<% @purchases.each do |purchase| %>
+     <strong><p>Purchase summary</p></strong>
+     <p>Buyer: <%= purchase.user.profile.username   %></p>
+     <p>Seller: <%= purchase.bicycle.user.profile.username %></p>
+     <p>Bike: <%= purchase.bicycle.title %></p>
+     <p>Delivery address: <%= purchase.bicycle.user.addresses.first.address %></p>
+     <p>Price:  <%= number_to_currency(purchase.bicycle.price , unit: "AUD $") %> </p>
+<% end %>

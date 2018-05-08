@@ -8,6 +8,8 @@ class BicyclesController < ApplicationController
   # GET /bicycles.json
   def index
     @bicycles  = policy_scope(Bicycle)
+ 
+  
   end
 
   # GET /bicycles/1

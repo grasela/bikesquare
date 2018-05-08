@@ -17,21 +17,26 @@
             <% unless current_user.profile.nil? %>
                 <%= link_to "My profile", profile_path(current_user.profile.id)  %>
             <% end %>
-
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            <%= link_to "My Purchases", purchases_path %>
             <%= current_user.email %>
-
-
+        
         <% else %>
             <%= link_to 'New Bicycle', new_bicycle_path %>
             <%= link_to "Sign in", new_user_session_path %>
         <% end %>
+        
+
         <%= form_tag(pages_home_path, :method => "get", id: "search-form") do %>
             <%= text_field_tag :search, params[:search], placeholder: "Search bicycles" %>
             <%= submit_tag "Search" %>
         <% end %>
 
+
+
         <%= yield %>
+
+
         <%= link_to "Contact Us", pages_contact_path %>
     </body>
 </html>
