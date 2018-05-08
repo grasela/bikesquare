@@ -10,6 +10,9 @@ gem 'dotenv-rails', '~> 2.4'
 #Devise gem for user Model 
 gem 'devise', '~> 4.4', '>= 4.4.3'
 
+# mailgun
+gem 'mailgun-ruby', '~> 1.1', '>= 1.1.9'
+
 #Geocoder gem required for google maps and location services 
 gem 'geocoder', '~> 1.4', '>= 1.4.7'
 

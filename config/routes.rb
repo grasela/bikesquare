@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :addresses
   resources :profiles
   get 'pages/home'
+  get 'pages/contact'
+  post 'pages/contact', to: 'pages#contact_email'
 
   resources :photos
   resources :bicycles
