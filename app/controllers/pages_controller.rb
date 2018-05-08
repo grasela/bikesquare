@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :check_profile?
-  before_action :check_available_bicycles?
+  # before_action :check_available_bicycles?
 
   def home
     @purchases = Purchase.all

@@ -8,14 +8,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_available_bicycles?
-    @purchases = Purchase.all
-    @purchases.each do |p|
-      if p.created_at < Time.now - 60.seconds && p.payed_at.nil?
-        p.destroy
-      end
-    end
-  end
+  # def check_available_bicycles?
+  #   @purchases = Purchase.all
+  #   @purchases.each do |p|
+  #     if p.created_at < Time.now - 60.seconds && p.payed_at.nil?
+  #       p.destroy
+  #     end
+  #   end
+  # end
 
   def check_purchase_expiry(purchase)
 
