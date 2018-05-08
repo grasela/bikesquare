@@ -15,19 +15,25 @@ class PagesController < ApplicationController
         @bicycles.push b 
       end
     end
+### search bar ###
+    if params[:search]
+      @bicycles = Bicycle.search(params[:search]).order("created_at DESC")
+    else
+      @bicycles = @bicycles
+    end
   end
+end
 
-  
-  def contact_email
-    user = current_user
-    ContactMailer.send_contact_email(user: user, params: email_params).deliver_now
-    
-    redirect_to root_path
-  end
 
-  private 
-  def email_params
-    params.require(:contact).permit(:name, :message)
+def contact_email
+  user = current_user
+  ContactMailer.send_contact_email(user: user, params: email_params).deliver_now
 
-  end
+  redirect_to root_path
+end
+
+private 
+def email_params
+  params.require(:contact).permit(:name, :message)
+
 end

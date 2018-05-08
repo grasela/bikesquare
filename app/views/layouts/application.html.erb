@@ -9,7 +9,7 @@
     </head>
 
     <body>
-            <%= link_to "bikeSquare", pages_home_path %>
+        <%= link_to "bikeSquare", pages_home_path %>
 
 
         <% if user_signed_in? %>
@@ -21,12 +21,17 @@
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
             <%= current_user.email %>
 
+
         <% else %>
             <%= link_to 'New Bicycle', new_bicycle_path %>
             <%= link_to "Sign in", new_user_session_path %>
         <% end %>
+        <%= form_tag(pages_home_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search bicycles" %>
+            <%= submit_tag "Search" %>
+        <% end %>
 
         <%= yield %>
-       <%= link_to "Contact Us", pages_contact_path %>
+        <%= link_to "Contact Us", pages_contact_path %>
     </body>
 </html>
