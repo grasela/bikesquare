@@ -1,4 +1,6 @@
 class PurchasesController < ApplicationController
+    rescue_from ActiveRecord::RecordNotFound, with: :session_expired
+
   def new
   end
   def create
@@ -14,6 +16,8 @@ class PurchasesController < ApplicationController
     @delivery_address = Address.find(@purchase[:delivery_address]).address
     @price = @purchase.bicycle.price
     @amount = @price * 100
+    check_purchase_expiry(@purchase)
+
   end
 
   def charge
@@ -39,6 +43,7 @@ class PurchasesController < ApplicationController
     #update purchase 
     @purchase.payed_at = Time.now
     @purchase.save!
+
     flash[:notice] = "Payment done!"
     redirect_to purchase_path(@purchase), fallback_location:  root_path
 
@@ -51,9 +56,12 @@ end
 def index
 end
 private 
+def session_expired
+  flash[:notice] = "Your session expired try again"
+  redirect_back(fallback_location: 'root_path')
+
+end
 
 def purchase_params 
   params.require(:purchase).permit(:user_id, :delivery_address, :bicycle_id, :pickup)
-
-
 end

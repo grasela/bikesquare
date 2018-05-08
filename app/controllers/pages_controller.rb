@@ -1,13 +1,9 @@
 class PagesController < ApplicationController
   before_action :check_profile?
+  before_action :check_available_bicycles?
 
   def home
     @purchases = Purchase.all
-    @purchases.each do |p|
-      if p.payed_at.nil?
-        p.delete 
-      end
-    end
     bikes = Bicycle.all
     @bicycles = []
     bikes.each do |b|
