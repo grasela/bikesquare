@@ -41,6 +41,7 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 ![bikeSquare Trello](/app/assets/images/trello2.png "bikeSquare trello")
 
 ## 4. User Stories
+[bikeSquare Trello](https://trello.com/b/CI3vl2gr/bikesquare)
 ![bikeSquare Trello](/app/assets/images/trello3.png "bikeSquare trello")
 ## 5. ERD (Entetity Relationship Diagram)
 ![bikeSquare ERD ](/app/assets/images/dbdesigner.png "bikeSquare ERD")
