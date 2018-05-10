@@ -14,7 +14,6 @@
 10. Features
 11. Ruby Gems
 12. Challenges 
-13. Coding 
 14. Final Product 
 
 
@@ -42,7 +41,7 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 ![bikeSquare Trello](/app/assets/images/trello2.png "bikeSquare trello")
 
 ## 4. User Stories
-![bikeSquare Trello](/app/assets/images/trello2.png "bikeSquare trello")
+![bikeSquare Trello](/app/assets/images/trello3.png "bikeSquare trello")
 ## 5. ERD (Entetity Relationship Diagram)
 ![bikeSquare ERD ](/app/assets/images/dbdesigner.png "bikeSquare ERD")
 
@@ -97,6 +96,8 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 * mini-magick
 * shrine
 * country_select
+* aws-s3
+* mailgun
 
 ## 12. Challenges 
 One of the main challenges was to create a pragmatic and useful database that can communicate very well. 
@@ -104,9 +105,23 @@ Having so many options for edditing/creating and managing views (bicycles, revie
 
 From technical point of view one of the big challenges was creating reviewers and reviewed_users as foreign key to Users table. Eventually , with the help of the docs and StackOverflow a solution has been obtained which allowed me to access both from Review table. 
 
+* user.rb
+```ruby
+  has_many :done_reviews,    class_name: "Review", foreign_key: "reviewer_id"
+  has_many :received_reviews, class_name: "Review", foreign_key: "reviewed_user_id"
+```
+
+* review.rb
+```ruby
+  belongs_to :reviewer, class_name: "User", foreign_key: "reviewer_id"
+  belongs_to :reviewed_user, class_name: "User", foreign_key: "reviewed_user_id"
+```
+
+Integrating Shrine AWS S3 uploads with Heroku environment has created some problems with accessing seeded data. Seeding image and avatar data using Shrine AWS S3 has made it a little more complex but unavoidable.
+
 ## 13. Future developments
 
-The current version, given the amount of time that has been spent on it is functional and operating. Users can uplaod their data as well as post bicycle including editing photos and other information. The funcitonality of the quenstions board has been really important and at the moment is good enough for th app to operate. The owner of the bicycle receives an email when they get a new question, which later on can be answered under their add. When they open the add they will see "answer question" button which will allow them to insert the details. It views quite nicely on a separate card next to the bicycle which makes it useful for both sellers and buyers. I like that the reviews have worked out. They calculate rating as well as give access to all users reviewed and reviewing. 
+The current version, given the amount of time that has been spent on it, is functional and operating. Users can uplaod their data as well as post bicycle including editing photos and other information. The funcitonality of the quenstions board has been really important and at the moment is good enough for th app to operate. The owner of the bicycle receives an email when they get a new question, which later on can be answered under their add. When they open the add they will see "answer question" button which will allow them to insert the details. It views quite nicely on a separate card next to the bicycle which makes it useful for both sellers and buyers. I like that the reviews have worked out. They calculate rating as well as give access to all users reviewed and reviewing. 
 
 Mailgun has been implemented for contact form as well as for messaging owners when they receive new question about their add. 
 
@@ -114,14 +129,14 @@ Shrine payments are being processed upon check out and a bicycle delivery addres
 
 Devise and Pundit secures access to data.
 
-At this stage this is the end of the user journey unless they would like to post a bicycle or buy another bicycle. In real world, the application requires the following: 
+At this stage, payment is is the end of the user journey unless they would like to post a bicycle or buy another bicycle. In real world, the application requires the following: 
 
 * wishlist 
 * multiple photos of bicycles 
 * assigning different addresses to bicycles - each user can have many addresses save and when they upload a bicycle they can assign any of them to the the bicycle , which later on becomes a delivery address or pick up address (accordingly)
-* pick up or delivery ? automatic shipment costs calculation
+* pick up or delivery option upon checkout ? aautomatic shipment costs calculation
 * if pick up is selected the app can calculate the distance and will offer help with getting directions
 * Payments - the idea is that they won't be processed at the time. Instead of buying the bicycle you are booking an inspection. Inspeciton time will be available and they will be set by the seller. 
-* public inspections - if one person books an inspection - if they decide to purchase the bicycle they will pay using the app in real time. No need for cash which is a security concern. 
-* better pundit logic - at the moment there is a mix of pundit policies and various method making sure that the correct and accurate data is rendered in front of the user - this has to be gone over and improved to make it clearer and easier. 
+* public inspections so someone else can inspect the bicycle at the same time - if one person books an inspection - if they decide to purchase the bicycle they will pay using the app in real time. No need for cash which is a security concern. 
+* better pundit logic - at the moment there is a mix of pundit policies and various methods making sure that the correct and accurate data is rendered in front of the user - this has to be gone over and improved to make it clearer and easier. 
 * tests
