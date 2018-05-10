@@ -40,7 +40,7 @@ a:visited {
 
 
 a:hover {
-    inherit;
+    color: inherit;
     background: none;
 }
 a:active {
@@ -127,9 +127,6 @@ header {
     width: 50%;
     height: 6vw;
 }
-
-
-
 
 ::placeholder {
     text-align: center;
@@ -283,6 +280,8 @@ main {
 
 footer{
     display: flex;
+    position:absolute; 
+    margin-top: 20%;
     justify-content: space-around;
     background: #55BBE1;
     width: 100%;
@@ -551,6 +550,9 @@ and (max-device-width : 480px) {
     .article p {
         font-size: 1em;
         line-height: 1.2em;
+    }
+    .useremail {
+        display: none;
     }
 
 
