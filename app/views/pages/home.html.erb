@@ -35,7 +35,9 @@
                     </div>
                     <div class="details">
                         <div class="bicycle_element first"> <p>   <%= number_to_currency(bicycle.price, unit: "AUD $") %> </p> </div>
-                        <div class="bicycle_element second"> <p>   <%= bicycle.user.addresses.first.suburb %> </p> </div>
+                        <div class="bicycle_element second"> <p>  
+                            <%# <%= bicycle.user.addresses.first.suburb%> </p> %>
+                        </div>
                         <div class="bicycle_element third"> <p>   <%= bicycle.size %></p> </div>
                         <div class="bicycle_element forth"> <p>   <%= bicycle.user.addresses.first.state %></p> </div>
                     </div>
