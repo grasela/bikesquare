@@ -40,18 +40,54 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 
 ## 3. Trello Board
 [bikeSquare Trello](https://trello.com/b/CI3vl2gr/bikesquare)
-## 4. User Stories
+![bikeSquare Trello](/app/assets/images/trello2.png "bikeSquare trello")
 
+## 4. User Stories
+![bikeSquare Trello](/app/assets/images/trello2.png "bikeSquare trello")
 ## 5. ERD (Entetity Relationship Diagram)
 ![bikeSquare ERD ](/app/assets/images/dbdesigner.png "bikeSquare ERD")
 
+## 6. Models 
+* User
+* Bicycle
+* Photo 
+* Profile
+* Purchase
+* Query
+* Review
+
+
+## 7. Controllers
+
+* bicycles controllers
+* photos controllers
+* profile controllers
+* purchase controllers
+* queries controllers
+* review controllers
 
 ## 8. Mood Board/ Inspiration
 [Moodboard/Inspiration](https://www.pinterest.com.au/erykgrasela/bikesquare/)
+![bikeSquare Wireframes](/app/assets/images/moodboard1.png)
+![bikeSquare Wireframes](/app/assets/images/moodboard2.png)
+
 ## 9. Wireframes 
 [Wireframes](https://www.figma.com/file/Zbx8HqptQkWiph6bHu5ufR9S/BikesSquare)
 ![bikeSquare Wireframes](/app/assets/images/wireframes.png)
-##10. Features
+![bikeSquare Wireframes](/app/assets/images/figma1.png)
+![bikeSquare Wireframes](/app/assets/images/figma2.png)
+![bikeSquare Wireframes](/app/assets/images/figma3.png)
+## 10. Features
+
+* Not signed in users can view only welcome page and sign up/login page. Can can view a bicycle but they cannot enquire about the bicycle until signed in
+* Signed in users are automatically prompted to fill the profile otherwise they are locked out. The application won't accept any activity without profile information 
+
+* Users can posts bikes, add photos, add locations to their profiles as well as view locations. They can also leave reviews for users or ask public questions on the board.
+* Users whose bicycles are enquiried about can view "answer question" field which is otherwise not available , otherwise other users see that the question is pending answer from the owner 
+
+* contact page sends email to the owner of the app
+* the app accepts payments using Stripe , it obtaines and saves stripe_id 
+
 ## 11. Ruby Gems
 * Rspec
 * Devise
@@ -62,10 +98,15 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 * mini-magick
 * shrine
 * country_select
-* aws-sdk
-## 12. Challenges 
-How to create 2 foreign keys for reviews relating to the same table user , creating reviewer and reviewed user 
 
-adding radio inputs to bicycle form which allows for selecting already saved user address or adding a new address 
+## 12. Challenges 
+One of the main challenges was to create a pragmatic and useful database that can communicate very well. 
+Having some many options for edditing/creating and managing views (bicycles, reviews, queries, profiles) posed a challenge for the views and functionality. 
+
+One of the big challenges was creating reviewers and reviewed_users as foreign key to Users table. Eventually , with the help of the docs and StackOverflow a solution has been obtained which allowed me to access both from Review table. 
 ## 13. Coding 
+
+Coding has been 
+
 ## 14. Final Product 
+
