@@ -58,7 +58,7 @@ Bicycle.create(
   gender: "unisex",
   year: "2017",
   user_id: 1,
-  address_id: 1
+  # address_id: 1
 
 
 )
@@ -72,7 +72,7 @@ Bicycle.create(
   gender: "male",
   year: "2007",
   user_id: 2,
-  address_id: 2
+  # address_id: 2
 
 )
 Bicycle.create(
@@ -86,7 +86,7 @@ Bicycle.create(
   gender: "male",
   year: "2017",
   user_id: 3,
-  address_id: 3
+  # address_id: 3
 
 
 )
@@ -101,7 +101,7 @@ Bicycle.create(
   gender: "unisex",
   year: "2017",
   user_id: 2,
-  address_id: 1
+  # address_id: 1
 
 
 )
@@ -115,7 +115,7 @@ Bicycle.create(
   gender: "male",
   year: "2007",
   user_id: 1,
-  address_id: 2
+  # address_id: 2
 
 )
 Bicycle.create(
@@ -129,7 +129,7 @@ Bicycle.create(
   gender: "male",
   year: "2017",
   user_id: 3,
-  address_id: 3
+  # address_id: 3
 
 
 )
