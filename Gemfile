@@ -32,6 +32,7 @@ gem 'shrine', '~> 2.11'
 gem 'mini_magick', '~> 4.8'
 
 gem 'image_processing', '~> 1.2'
+gem 'aws-sdk-s3', '~> 1.10'
 
 #country_select helper for sign up form (choose from a country)
 gem 'country_select', '~> 3.1', '>= 3.1.1'
