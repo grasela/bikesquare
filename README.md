@@ -1,6 +1,6 @@
-# bikesquare.com.au 
+# bikesquaremel.herokuapp.com
 
-[https://bikeSquare.com.au](https://bikesquare.com.au)
+[https://bikesquaremel.herokuapp.com](https://bikesquaremel.herokuapp.com)
 # List of contents 
 1. Problem 
 2. Solution
@@ -8,13 +8,13 @@
 4. User Stories
 5. ERD (Entetity Relationship Diagram)
 6. Models
-7. Controller
+7. Controllers
 8. Mood Board/ Inspiration
 9. Wireframes 
 10. Features
 11. Ruby Gems
 12. Challenges 
-14. Final Product 
+13. Final product and future developments
 
 
 ## 1. Problem 
