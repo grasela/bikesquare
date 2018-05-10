@@ -1,4 +1,4 @@
-# require "shrine"
+require "shrine"
 # require "shrine/storage/file_system"
 
 # Shrine.storages = {
@@ -15,7 +15,7 @@ require "shrine/storage/s3"
 s3_options = {
   access_key_id:     "AKIAJBQ3ZMZLB5AUORQQ",
   secret_access_key: "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",
-  region:            "US-Ohio",
+  region:            "us-east-2",
   bucket:            "flowerpowerbucket",
 }
 

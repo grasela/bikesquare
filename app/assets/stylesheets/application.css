@@ -737,6 +737,8 @@ and (max-device-width : 1024px) {
 
 .photoviewer img  {
     border-radius: 50px;
+    width: 100%;
+    max-height: 300px;
 
 
 }
