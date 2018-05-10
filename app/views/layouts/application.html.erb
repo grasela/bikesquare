@@ -13,8 +13,12 @@
                 <div class="logo"><%= link_to (image_tag("Logov3.png", alt: "bikeSquare logo" )), root_path %></div>
             <% if user_signed_in? %>
                 <nav>
+                    
                     <div class="avatar-top">
-                        <%= link_to ( image_tag current_user.profile.avatar_url(:small)), profile_path(current_user) %> 
+                        <% if current_user.profile.present? %>
+                            <%= link_to ( image_tag current_user.profile.avatar_url(:small)), profile_path(current_user.profile) %> 
+                        <% else %>
+                        <% end %>
                     </div>
                     <div> <p> <%= link_to "my bicycles", bicycles_path %></p> </div>
                     <% unless current_user.profile.nil? %>
@@ -36,7 +40,7 @@
                     <%= submit_tag "Search", class: "search_button" %>
                 <% end %>
             </div>
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.profile.present? %>
                 <div class="useremail">
                     <div><p> <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></p> </div>
                 </div>

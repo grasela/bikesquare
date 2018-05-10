@@ -23,7 +23,7 @@
 
                     <div class="titletitle"><p><%= bicycle.title %></p> </div>
                     <div class="avatar">
-                        <%=link_to( image_tag(bicycle.user.profile.avatar_url(:small)), profile_path(bicycle.user.id),) %>
+                        <%=link_to( image_tag(bicycle.user.profile.avatar_url(:small)), profile_path(bicycle.user.profile),) %>
                     </div>
 
 
