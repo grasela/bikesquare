@@ -1,60 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-<strong>First name:</strong>
-<%= @profile.first_name %>
-</p>
-
-<p>
-<strong>Last name:</strong>
-<%= @profile.last_name %>
-</p>
-<p>Rating:<%= @user_rating %></p>
-<p>
-<strong>Avatar data:</strong>
-<%= image_tag @profile.avatar_url(:small) %>
-</p>
-
-<p>
-<strong>Username:</strong>
-<%= @profile.username %>
-</p>
-<%= link_to 'Edit Profile Information', edit_profile_path(@profile) if policy(@profile).update? %> 
-
-<p>
-<strong>Addresses</strong>
-<% @addresses.each do |a| %>
-    <p> <%= a.address %></p>
+<div class="showprofile">
+    <p id="notice"><%= notice %></p>
+    <div class="avatar">
+        <%= image_tag @profile.avatar_url(:small) %>
+    </div>
     <div>
-        <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{a.latitude},#{a.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{@profile.first_name.first}%7C#{a.latitude},#{a.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
+        <%= @profile.username %>
+    </div>
+    <div class="profile-card">
+        <% @addresses.each do |a| %>
+            <p> <%= a.address %></p>
+            <div class="map">
+                <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{a.latitude},#{a.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{@profile.first_name.first}%7C#{a.latitude},#{a.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
 
+            </div>
+        <% if policy(@profile).update? %>
+            <div class="submit">
+                <p>
+                <%= link_to 'delete location', a, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </p>
+            </div>
+            <div class="submit">
+                <p>
+                <%= link_to 'edit location', edit_address_path(a) %>
+                </p>
+            </div>
+        <% end %>
+
+        <% end %>
+
+        </p>
+        <p>
+
+        <% if policy(@profile).update? %>
+            <div class="submit">
+                <p>
+                <%= link_to "add location", new_address_path(user_id: @user.id) %>
+                </p>
+            </div>
+            <div class="submit">
+                <p>
+                <%= link_to 'edit your profile', edit_profile_path(@profile) if policy(@profile).update? %> 
+                </p>
+            </div>
+        <% end %>
+        <div><strong>reviews</strong>
+            <div>
+                <p>
+                rating:<%= @user_rating unless @user_rating.nil? %> stars
+                </p>
+            </div>
+
+            <div class="review profile-card">
+                <% already_reviewed = [] %>
+                <% @reviews.each do |review| %>
+                    <%   already_reviewed.push review.reviewer %> 
+                    <div class="avatar"><%= image_tag review.reviewer.profile.avatar_url(:small) %></div> <p><strong> <%= review.reviewer.profile.username %> </strong> </p>
+                    <p><%= review.content  %> </p>
+                    <p><%= review.rating %> stars for <%= @profile.username %> </p>
+                <% end %>
+
+                <% unless current_user.in?(already_reviewed) || current_user == @profile.user ||current_user.nil? %>
+                    <div class="button"> <%= link_to "Review #{@profile.username} ", new_review_path(reviewed_user: @profile.user, reviewer: current_user, user_id: @profile.user) %></div> 
+        </p>
+    <% end  %>
+            </div>
+        </div>
 
     </div>
-<% end %>
-
-</p>
-<p>
-
-<% if policy(@profile).update? %>
-    <%= link_to "Add location", new_address_path(user_id: @user.id) %>
-
-    <%= link_to 'Edit', edit_profile_path(@profile) %>
-    <%= link_to 'Edit Addresses', addresses_path %> |
-<% end %>
-<p>
-<strong>Reviews</strong>
-<% already_reviewed = [] %>
-<% @reviews.each do |review| %>
-    <%   already_reviewed.push review.reviewer %> 
-    <p><%= review.rating %> stars </p>
-    <p><%= review.content %></p>
-    <p><%= review.reviewer.profile.username %></p>
-<% end %>
-
-<% unless current_user.in?(already_reviewed) || current_user == @profile.user ||current_user.nil? %>
-<%= link_to "Review #{@profile.username} ", new_review_path(reviewed_user: @profile.user, reviewer: current_user, user_id: @profile.user) %> 
-</p>
-<% end  %>
-
-
-
+</div>

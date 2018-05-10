@@ -1,12 +1,34 @@
-<%= flash[:notice] %>
+<div class="showprofile">
 
-<h1>My purchases</h1>
 
-<% @purchases.each do |purchase| %>
-     <strong><p>Purchase summary</p></strong>
-     <p>Buyer: <%= purchase.user.profile.username   %></p>
-     <p>Seller: <%= purchase.bicycle.user.profile.username %></p>
-     <p>Bike: <%= purchase.bicycle.title %></p>
-     <p>Delivery address: <%= purchase.bicycle.user.addresses.first.address %></p>
-     <p>Price:  <%= number_to_currency(purchase.bicycle.price , unit: "AUD $") %> </p>
-<% end %>
+    <h1><p> My purchases</p> </h1>
+    <%= flash[:notice] %>
+    <div class="review profile-card">
+
+
+        <% @purchases.each do |purchase| %>
+            <div><strong>Purchase summary</strong> </div>
+            <div>Seller: <%= purchase.bicycle.user.profile.username %>
+            <div class="avatar">
+                <%=link_to( image_tag(purchase.bicycle.user.profile.avatar_url(:small)), profile_path(purchase.bicycle.user.id),) %>
+
+            </div>
+            <div> leave review</div>
+            </div>
+
+            <p>Bike: <%= purchase.bicycle.title %></p>
+            <p>Pick up address: <%= purchase.user.addresses.first.address %></p>
+            <p>
+
+            <div class="map">
+                <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{purchase.user.addresses.first.latitude},#{purchase.user.addresses.first.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{purchase.bicycle.user.profile.first_name.first}%7C#{purchase.user.addresses.first.latitude},#{purchase.user.addresses.first.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
+
+            </div>
+
+
+            </p>
+            <p>Price:  <%= number_to_currency(purchase.bicycle.price , unit: "AUD $") %> </p>
+        <% end %>
+    </div>
+</div>
+

@@ -12,7 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
     <%= form.text_area :content, id: :review_content %>
   </div>
 
@@ -21,8 +20,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, id: :review_rating %>
+      <p> <%= form.label :rating %></p>
+    <%= form.select :rating,["", "1", "2", "3", "4", "5"], id: :review_rating %>
   </div>
 
   <div class="field">

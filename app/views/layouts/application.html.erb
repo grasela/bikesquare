@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bikesquare</title>
+        <title> bikeSquare </title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,34 +9,52 @@
     </head>
 
     <body>
-        <%= link_to "bikeSquare", pages_home_path %>
+        <header>     
+                <div class="logo"><%= link_to (image_tag("Logov3.png", alt: "bikeSquare logo" )), root_path %></div>
+            <% if user_signed_in? %>
+                <nav>
+                    <div class="avatar-top">
+                        <%= link_to ( image_tag current_user.profile.avatar_url(:small)), profile_path(current_user) %> 
+                    </div>
+                    <div> <p> <%= link_to "my bicycles", bicycles_path %></p> </div>
+                    <% unless current_user.profile.nil? %>
+                        <div><p> <%= link_to "my profile", profile_path(current_user.profile.id)  %></p> </div>
+                    <% end %>
+                    <div><p> <%= link_to "my purchases", purchases_path  %> </p></div>
+                    <div><p> <%= link_to "sign out", destroy_user_session_path, method: :delete %></p> </div>
+                </nav>
 
-
-        <% if user_signed_in? %>
-            <%= link_to "My bicycles", bicycles_path %>
-            <% unless current_user.profile.nil? %>
-                <%= link_to "My profile", profile_path(current_user.profile.id)  %>
+            <% else %>
+                <div class="nav">
+                    <div><p>  <%= link_to 'new bicycle', new_bicycle_path %> </p></div>
+                    <div><p> <%= link_to "sign in", new_user_session_path %></p></div>
+                </div>
             <% end %>
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-            <%= link_to "My Purchases", purchases_path %>
-            <%= current_user.email %>
-        
-        <% else %>
-            <%= link_to 'New Bicycle', new_bicycle_path %>
-            <%= link_to "Sign in", new_user_session_path %>
-        <% end %>
-        
+            <div class="search_form"> 
+                <%= form_tag(pages_home_path, :method => "get", id: "search-form") do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Search bicycles" %>
+                    <%= submit_tag "Search", class: "search_button" %>
+                <% end %>
+            </div>
+            <% if user_signed_in? %>
+                <div class="useremail">
+                    <div><p> <%= current_user.profile.first_name %> <%= current_user.profile.last_name %></p> </div>
+                </div>
+            <% else %>
 
-        <%= form_tag(pages_home_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search bicycles" %>
-            <%= submit_tag "Search" %>
-        <% end %>
-
-
-
-        <%= yield %>
+            <% end %>
+        </header>
 
 
-        <%= link_to "Contact Us", pages_contact_path %>
+        <main>
+
+            <%= yield %>
+        </main>
+        <footer>
+            <%= link_to "Contact Us", pages_contact_path %>
+            <%= link_to "About bikeSquare", pages_contact_path %>
+            <%= link_to "Legal", pages_contact_path %>
+        </footer>
     </body>
+
 </html>

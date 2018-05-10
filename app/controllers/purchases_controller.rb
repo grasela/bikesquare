@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
     @purchases  = Purchase.all.where(user: current_user)
 
 
+
   end
   def new
   end
@@ -19,7 +20,7 @@ class PurchasesController < ApplicationController
     @buyer = @purchase.user
     @seller = @purchase.bicycle.user
     @bicycle = @purchase.bicycle
-    @delivery_address = Address.find(@purchase[:delivery_address]).address
+    @delivery_address = Address.find(@purchase[:delivery_address])
     @price = @purchase.bicycle.price
     @amount = @price * 100
     check_purchase_expiry(@purchase)

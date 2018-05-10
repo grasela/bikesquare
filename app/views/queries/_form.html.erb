@@ -3,32 +3,29 @@
     <div id="error_explanation">
       <h2><%= pluralize(query.errors.count, "error") %> prohibited this query from being saved:</h2>
 
-      <ul>
+      <div>
       <% query.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p><%= message %></p>
       <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
   <% if current_user != bicycle.user %>
   <div class="field">
-    <%= form.label :question %>
+   <p> <%= form.label :question %></p>
     <%= form.text_area :question, id: :query_question, required: true %>
   </div>
   <% elsif current_user == bicycle.user %>
-      <%= query.question %>
-  <div class="field">
-    <%= form.label :answer %>
-    <%= form.text_area :answer, id: :query_answer %>
+    <p class="reviewcard">  <%= query.question %></p>
+    <div class="field">
+    <%= form.text_area :answer, id: :query_answer, placeholder: "answer here" %>
   </div>
   <% else %> 
-  redirect_to root  
-  flash[:message] = "your not signed in"
+  <% redirect_to root flash[:message] = "your not signed in" %>
 
   <% end %> 
 
   <div class="field">
-    <%= form.label :bicycle_id %>
     <%= form.hidden_field :bicycle_id, value: bicycle.id, id: :query_bicycle_id %>
   </div>
   <div class="field">
@@ -36,6 +33,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "send", class: "submit-button" %>
   </div>
 <% end %>

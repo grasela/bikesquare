@@ -1,47 +1,52 @@
 <p id="notice"><%= notice %></p>
-<h1>Bicycles</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Brand</th>
-      <th>Type</th>
-      <th>Size</th>
-      <th>Colour</th>
-      <th>Gender</th>
-      <th>Year</th>
-      <th>User</th>
-      <th>Photos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p><%= flash[:alert] %><p>
 
-  <tbody>
+
+<div class="devise-login"><p> <h1>my bicycles </h1></p> </div>
+
+<div class="card-wrapper">
     <% @bicycles.each do |bicycle| %>
-      <tr>
-        <td><%= bicycle.title %></td>
-        <td><%= bicycle.price %></td>
-        <td><%= bicycle.description %></td>
-        <td><%= bicycle.brand %></td>
-        <td><%= bicycle.type %></td>
-        <td><%= bicycle.size %></td>
-        <td><%= bicycle.colour %></td>
-        <td><%= bicycle.gender %></td>
-        <td><%= bicycle.year %></td>
-        <td><%= link_to "#{bicycle.user.profile.username}", profile_path(bicycle.user.id) %></td>
-        <% bicycle.photos.each do |photo| %>
-            <td><%= image_tag photo.image_url(:medium) %> </td>
-        <% end %>
-        <td><%= link_to 'Show', bicycle %></td>
-        <td><%= link_to 'Edit', edit_bicycle_path(bicycle) %></td>
-        <td><%= link_to 'Destroy', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="card">
+            <div class="date"><p> <%= bicycle.created_at.in_time_zone("Melbourne").strftime("%d %b %y") %> </p> </div>
+            <div class="title-content">
+                <div class="bicycle_element title"> 
+
+                    <div class="titletitle"><p><%= bicycle.title %></p> </div>
+                    <div class="avatar">
+                        <%=link_to( image_tag(bicycle.user.profile.avatar_url(:small)), profile_path(bicycle.user.id),) %>
+                    </div>
+
+
+                </div>
+                <div class="content">
+
+                    <div class="bicycle_element photo">   
+                        <%= link_to ( image_tag bicycle.photos.first.image_url(:small)), bicycle_path(bicycle.id) %> 
+                    </div>
+                    <div class="details">
+                        <div class="bicycle_element first"> <p>   <%= number_to_currency(bicycle.price, unit: "AUD $") %> </p> </div>
+                        <div class="bicycle_element second"> <p>   <%= bicycle.user.addresses.first.suburb %> </p> </div>
+                        <div class="bicycle_element third"> <p>   <%= bicycle.size %></p> </div>
+                        <div class="bicycle_element forth"> <p>   <%= bicycle.type %></p> </div>
+                    </div>
+                </div>
+                <div class="devise-login edit-buttons">
+                        <div class="bicycle_element"> <p>   <%= bicycle.description %></p> </div>
+
+                </div>
+
+                <div class="devise-login edit-buttons">
+                    <div class="button"><%= link_to 'show', bicycle %></div>
+                    <div class="button"><%= link_to 'edit', edit_bicycle_path(bicycle) %></div>
+                    <div class="button"><%= link_to 'delete', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+
+                </div>
+            </div>
+        </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+</div>
 
-<%= link_to 'New Bicycle', new_bicycle_path %>
+<div class="devise-login">
+    <p class="button"> <%= link_to 'new bicycle', new_bicycle_path %> <p>
+</div>

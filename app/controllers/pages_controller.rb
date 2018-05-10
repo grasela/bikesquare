@@ -17,16 +17,17 @@ class PagesController < ApplicationController
     else
       @bicycles = @bicycles
     end
-  end
-end
-
-
-def contact_email
+    def contact_email
   user = current_user
   ContactMailer.send_contact_email(user: user, params: email_params).deliver_now
 
   redirect_to root_path
 end
+
+  end
+end
+
+
 
 private 
 def email_params

@@ -12,7 +12,6 @@
   <% end %>
   <div class="field">
 
-      <%= form.label :image %>
       <%= form.hidden_field :image, value: photo.cached_image_data %>
         <%= form.file_field :image, required: true %>
     </div>
@@ -24,6 +23,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "add photo", class: "submit-button" %>
   </div>
 <% end %>

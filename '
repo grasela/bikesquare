@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<p><%= flash[:alert] %><p>
+
+
+<h1>Bicycles</h1>
+
+
+
+<div class="card-wrapper">
+    <% @bicycles.each do |bicycle| %>
+        <div class="card">
+            <div class="date"><%= bicycle.created_at.in_time_zone("Melbourne").strftime("%d %b %y") %></div>
+            <div class="title-content">
+                <div class="bicycle_element title"> 
+
+                    <div class="titletitle"><p><%= bicycle.title %></p> </div>
+                    <div class="avatar">
+                        <%=link_to( image_tag(bicycle.user.profile.avatar_url(:small)), profile_path(bicycle.user.id),) %>
+                    </div>
+
+
+                </div>
+                <div class="content">
+
+                    <div class="bicycle_element photo">   
+                        <%= link_to ( image_tag bicycle.photos.first.image_url(:small)), bicycle_path(bicycle.id) %> 
+                    </div>
+                    <div class="details">
+                        <div class="bicycle_element first"> <p>   <%= bicycle.price %> </p> </div>
+                        <div class="bicycle_element second"> <p>   <%= bicycle.user.addresses.first.suburb %> </p> </div>
+                        <div class="bicycle_element third"> <p>   <%= bicycle.size %></p> </div>
+                        <div class="bicycle_element forth"> <p>   <%= bicycle.type %></p> </div>
+                    </div>
+                </div>
+                
+<div class="devise-login">
+                <div class="button"><%= link_to 'Show', bicycle %></div>
+                <div class="button"><%= link_to 'Edit', edit_bicycle_path(bicycle) %></div>
+                <div class="button"><%= link_to 'Destroy', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+
+            </div>
+            </div>
+        </div>
+    <% end %>
+
+</div>
+
+<div class="devise-login">
+            <p class="button"> <%= link_to 'New Bicycle', new_bicycle_path %> <p>
+</div>

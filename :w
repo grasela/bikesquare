@@ -1,0 +1,167 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+* {
+}
+body {
+    font-size: 100%;
+}
+
+body a {
+    text-decoration: none;
+    color: #FFF;
+    background: RGBA(85, 187, 225, 0.7);
+    min-height: 30px;
+    margin: 10px;
+    text-align: center;
+}
+
+a:visited {
+    color: #FFF;
+}
+a:hover {
+    color: #FFF;
+}
+a:active {
+    color: #FFF;
+
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #55BBE1;
+    background-image: url('bg2');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #FFF;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.search_form {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: -2em auto auto auto;
+
+}
+
+.search_form form {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    
+
+}
+
+.search_form form input {
+    width: 30%;
+    border-radius: 50px;
+    height: 3vw;
+    border: none;
+    box-shadow: 1px 1px 1px #55BBE1;
+
+
+}
+::placeholder {
+    text-align: center;
+    color: #004233;
+    font-size: 1.2em;
+
+}
+
+.search_button {
+    display: none;
+}
+
+
+nav {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: RGBA(85, 187, 225, 0.7);
+    width: 95%;
+    max-width: 1000px;
+    min-height: 30px;
+    max-height: 300px;
+    padding: 0.1em;
+    border-radius: 20px;
+    justify-content: space-around;
+    margin: 2em auto auto auto;
+
+
+
+
+
+}
+
+nav div {
+    margin: auto;
+    padding: 0.2em;
+
+}
+
+.button { 
+    margin: auto;
+    background: #55BBE1;
+    padding: 0.5em;
+    border-radius: 10px;
+
+
+}
+
+main {
+    display: flex;
+    width: fit-content;
+    font-size: 1.5em;
+
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid black;
+    margin-left: 50%;
+    transform: translate(-50%);
+
+
+
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: space-around;
+    background: #55BBE1;
+    width: 100%;
+    min-height: 30px;
+    max-height: 50px;
+    padding: 0.1em;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+}
+
+footer a {
+}

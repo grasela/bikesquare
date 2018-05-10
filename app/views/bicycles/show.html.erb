@@ -1,107 +1,124 @@
+
+<div class="showbicycle">
+
+    <div class="profile-card">
 <p id="notice"><%= notice %></p> 
-
-
-<p>
-<strong> Posted: </strong>
-<%= @bicycle.created_at.strftime("%d %b %y") %>
-</p>
-<p>
-<strong> Updated: </strong>
-<%= @bicycle.updated_at.strftime("%d %b %y") %>
-</p>
-<strong>Title:</strong>
-<%= @bicycle.title %>
-</p>
-
-<p>
-<strong>Price:</strong>
-<%= @bicycle.price %>
-</p>
-
-<p>
-<strong>Description:</strong>
-<%= @bicycle.description %>
-</p>
-
-<p>
-<strong>Brand:</strong>
-<%= @bicycle.brand %>
-</p>
-
-<p>
-<strong>Size:</strong>
-<%= @bicycle.size %>
-</p>
-
-<p>
-<strong>Colour:</strong>
-<%= @bicycle.colour %>
-</p>
-
-<p>
-<strong>Gender:</strong>
-<%= @bicycle.gender %>
-</p>
-
-<p>
-<strong>Year:</strong>
-<%= @bicycle.year %>
-</p>
-
-
-<p>
-<strong>Owner:</strong>
-<%= link_to "#{@owner.username} ", profile_path(@bicycle.user.id) %>
-</p>
-<strong>Photos</strong>
-
-<p>    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) if policy(@bicycle).update? %></p>
-<% @photos.each do |photo| %>
-    <%= image_tag photo.image_url(:medium) %>
-<% end %>
-</p>
-
-
-<% if policy(@bicycle).update? %>
-    <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
-<% end %>
-<% if user_signed_in? && current_user != @bicycle.user  %>
-<%= form_for @purchase, :url => purchases_path(@purchase), :html => {:method => :post} do |f| %>
-  <%= f.hidden_field :pickup, value: false %>
-  <%= f.hidden_field :delivery_address, value: current_user.addresses.first.id %>
-  <%= f.hidden_field :bicycle_id, value: @bicycle.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Buy", data: { confirm: 'Do you really want to buy and pay for this bicycle?' }%>
-<% end %>
-<% end %>
-
-
-
-<p><strong>Questions and Answers </strong> </p>
-<p id="notice"><%= notice %></p> 
-
-    <%= link_to 'Ask a question', new_query_path(bicycle_id: @bicycle) if user_signed_in? && current_user != @bicycle.user  %>
-
-<p>
-<% @queries.each do |query| %>
-    <p><strong>  <%= query.user.profile.username %></strong> </p>
-    <p> <%= query.created_at.strftime("%d %b %y")%> </p>
-    <p><%= query.question %></p>
-    <% if query.answer.present? %>
-        <strong>     <%= @owner.username %> </strong>
-
-        <p><%= query.answer %> </p>
+        <div class="photoviewer">  
+            <%# <% @photos.each do |photo| %1> %>
+            <%#     <%= image_tag photo.image_url(:medium) %1> %>
+            <%# <% end %1> %>
+        <%= image_tag @photos.first.image_url(:medium) %>
+        </div>
+        <% if policy(@bicycle).update? %>
+            <p class="button">    <%= link_to 'add photos', edit_bicycle_path(@bicycle)  %></p>
     <% else %>
-        <p>Question is awaiting response from <%= @owner.username %> </p>
-    
-    <% end %>
-    <% if  @bicycle.user == current_user && query.answer.nil?  %>
-        <%= link_to "Answer this question", edit_query_path(query) %> 
-    <% else %>
+    <% end%>
+        <p>
+        <strong><%= @bicycle.title %> </strong>
+        </p>
+        <div class="bicycle-details">
+            <p>
+            <strong> Posted: </strong>
+            <%= @bicycle.created_at.strftime("%d %b %y") %>
+            </p>
+            <p>
+            <strong> Updated: </strong>
+            <%= @bicycle.updated_at.strftime("%d %b %y") %>
+            </p>
+
+            <p>
+            <strong>Price:</strong>
+            <%= @bicycle.price %>
+            </p>
 
 
-    <% end %>
+            <p>
+            <strong>Brand:</strong>
+            <%= @bicycle.brand %>
+            </p>
+
+            <p>
+            <strong>Size:</strong>
+            <%= @bicycle.size %>
+            </p>
+
+            <p>
+            <strong>Colour:</strong>
+            <%= @bicycle.colour %>
+            </p>
+
+            <p>
+            <strong>Gender:</strong>
+            <%= @bicycle.gender %>
+            </p>
+
+            <p>
+            <strong>Year:</strong>
+            <%= @bicycle.year %>
+            </p>
 
 
-<% end %>
+            <p>
+            <strong>Owner:</strong>
+            <%= link_to "#{@owner.username} ", profile_path(@bicycle.user.id) %>
+            </p>
+            <p>
+            <strong>Description:</strong>
+            <%= @bicycle.description %>
+            </p>
+        </div>
 
+        <% if policy(@bicycle).update? %>
+            <p class="button">    <%= link_to 'Edit', edit_bicycle_path(@bicycle) %> </p>
+        <% end %>
+        <% if user_signed_in? && current_user != @bicycle.user  %>
+            <%= form_for @purchase, :url => purchases_path(@purchase), :html => {:method => :post} do |f| %>
+                <%= f.hidden_field :pickup, value: false %>
+                <%= f.hidden_field :delivery_address, value: current_user.addresses.first.id %>
+                <%= f.hidden_field :bicycle_id, value: @bicycle.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <p >   <%= f.submit "Buy", class: "button"%></p>
+            <% end %>
+        <% end %>
+
+
+
+
+    </div>
+    <div class="profile-card">
+    <% if user_signed_in? && current_user != @bicycle.user  %>
+               <p class="button"> 
+               <%= link_to 'Ask a question', new_query_path(bicycle_id: @bicycle)  %></p>
+
+               <p>
+           <% else %>
+
+           <% end %>
+            <% @queries.each do |query| %>
+        <div class="reviewcard">
+                <p> <%= query.created_at.strftime("%d %b %y")%> </p>
+            <div class="userfield">
+                <strong> <p> <%= query.user.profile.username %>:</p></strong>
+                <p class="avatar"> <%= image_tag query.user.profile.avatar_url(:small) %></p> 
+                
+            </div>
+                <p><%= query.question %></p>
+                <strong> <p> <%= @owner.username %> (owner): </p> </strong>
+                <% if query.answer.present? %>
+                    <p class="response"><%= query.answer %> </p>
+                <% else %>
+                    <p class="response italic">Question is awaiting response from <%= @owner.username %> </p>
+
+                <% end %>
+                <% if  @bicycle.user == current_user && query.answer.nil?  %>
+                    <div class="answerbutton"> <p><%= link_to "Answer this question", edit_query_path(query) %> </p> </div> 
+                <% else %>
+
+
+                <% end %>
+
+        </div>
+
+            <% end %>
+    </div>
+</div>

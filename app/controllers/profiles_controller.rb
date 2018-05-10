@@ -21,13 +21,21 @@ class ProfilesController < ApplicationController
       end
       max = all_ratings.count * 5
       sum = all_ratings.sum
-      percentage =  sum * 100/max
+      if max != 0 
+      percentage =  sum * 100/max 
       result = percentage * 5/100.00
+      else 
+        result = nil 
+      end
       return result
 
     end
 
-    @user_rating = user_rating(@reviews) if @reviews == nil 
+    if @reviews.nil?
+      @user_rating == nil 
+    else
+      @user_rating = user_rating(@reviews) 
+    end
 
 
 

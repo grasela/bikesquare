@@ -12,50 +12,51 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :house_number %>
+      
+      <p> <%= form.label :house_number %></p>
     <%= form.text_field :house_number, id: :address_house_number, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :street_number %>
+   <p> <%= form.label :street_number %></p>
     <%= form.text_field :street_number, id: :address_street_number, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :street %>
+  <p>  <%= form.label :street %></p>
     <%= form.text_field :street, id: :address_street, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :suburb %>
+   <p> <%= form.label :suburb %></p>
     <%= form.text_field :suburb, id: :address_suburb, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :city %>
+   <p> <%= form.label :city %></p>
     <%= form.text_field :city, id: :address_city, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :state %>
+   <p> <%= form.label :state %></p>
     <%= form.select :state, ['','NSW', 'VIC', 'QLD', 'SA', 'WA', 'NT', 'TAS'], id: :address_state, required: true %>
   </div>
 
   <div class="field">
-      <%= form.label :country_code %>
+    <p>  <%= form.label :country_code %></p>
     <%= form.country_select :country_code, id: :address_country_code, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :postal_code %>
+   <p> <%= form.label :postal_code %></p>
     <%= form.number_field :postal_code, id: :address_postal_code, required: true %>
   </div>
 
   <div class="field">
-    <%= form.hidden_field :user_id, value: @user.id , id: :address_user_id, required: true %>
+      <p> <%= form.hidden_field :user_id, value: @user.id , id: :address_user_id, required: true %> </p>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "submit location", class: "submit-button" %>
   </div>
 <% end %>

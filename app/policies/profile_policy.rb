@@ -16,6 +16,7 @@ class ProfilePolicy < ApplicationPolicy
     if user.present?
       user.admin? || record.user == user
     else 
+      false
     end   
   end   
 

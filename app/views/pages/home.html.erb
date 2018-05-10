@@ -1,47 +1,53 @@
-<p id="notice"><%= notice %></p>
-<h1>Bicycles</h1>
-<%= flash[:alert] %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Brand</th>
-      <th>Type</th>
-      <th>Size</th>
-      <th>Colour</th>
-      <th>Gender</th>
-      <th>Year</th>
-      <th>User</th>
-      <th>Photos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="showbicycle">
+    <p id="notice"><%= notice %></p>
+    <p><%= flash[:alert] %><p>
+</div>
 
-  <tbody>
-      <% @bicycles.each do |bicycle| %>
-      <tr>
-        <td><%= bicycle.title %></td>
-        <td><%= bicycle.price %></td>
-        <td><%= bicycle.description %></td>
-        <td><%= bicycle.brand %></td>
-        <td><%= bicycle.type %></td>
-        <td><%= bicycle.size %></td>
-        <td><%= bicycle.colour %></td>
-        <td><%= bicycle.gender %></td>
-        <td><%= bicycle.year %></td>
-        <td><%= link_to "#{bicycle.user.profile.username}", profile_path(bicycle.user.id) %></td>
-        <td><%= image_tag bicycle.photos.first.image_url(:small) %></td>
-        <td><%= link_to "SHOW BIKE", bicycle_path(bicycle.id)%> </td>
+<div class="article">
+    <div> 
+        <h3> bikeSquare is here! </h3>
+        <p> <strong>bikeSquare </strong> is where your purchase quality bikes from members of the communities all over Australia!</p> </div>
+    <div> 
+        <h3> Safe and easy! </h3>
+        <p>It is easy, save and payment are secure! No more stresful cash transactions on the street.
+        Always check the user reviews as well as remember to review people you bought from. It helps everyone making sure the bikes come from trustworthy source</p> 
+    </div>
+</div>
 
-        <%# <% bicycle.photos.each do |photo| %1> %>
-        <%#     <td><%= image_tag photo.image_url(:small) %1> </td> %>
-        <%# <% end %1> %>
-      </tr>
+<div class="card-wrapper">
+    <% @bicycles.each do |bicycle| %>
+        <div class="card">
+            <div class="date"> <p><%= bicycle.created_at.in_time_zone("Melbourne").strftime("%d %b %y") %></p> </div>
+            <div class="title-content">
+                <div class="bicycle_element title"> 
+
+                    <div class="titletitle"><p><%= bicycle.title %></p> </div>
+                    <div class="avatar">
+                        <%=link_to( image_tag(bicycle.user.profile.avatar_url(:small)), profile_path(bicycle.user.id),) %>
+                    </div>
+
+
+                </div>
+                <div class="content">
+
+                    <div class="bicycle_element photo">   
+                        <%= link_to ( image_tag bicycle.photos.first.image_url(:small)), bicycle_path(bicycle.id) %> 
+                    </div>
+                    <div class="details">
+                        <div class="bicycle_element first"> <p>   <%= number_to_currency(bicycle.price, unit: "AUD $") %> </p> </div>
+                        <div class="bicycle_element second"> <p>   <%= bicycle.user.addresses.first.suburb %> </p> </div>
+                        <div class="bicycle_element third"> <p>   <%= bicycle.size %></p> </div>
+                        <div class="bicycle_element forth"> <p>   <%= bicycle.type %></p> </div>
+                    </div>
+                </div>
+                <div class="devise-login">
+                    <div class="bicycle_element"> <p>   <%= bicycle.description %></p> </div>
+
+                </div>
+
+            </div>
+        </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+</div>
 

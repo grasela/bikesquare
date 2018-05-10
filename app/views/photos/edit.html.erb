@@ -1,6 +1,13 @@
-<h1>Editing Photo</h1>
+<div class="devise-login">
+<div class="login-form">
+
+    <p><h1>Editing Photo</h1></p>
 
 <%= render 'form', photo: @photo %>
 
-<%= link_to 'Show', @photo %> |
-<%= link_to 'Back', photos_path %>
+<p class="button"><%= link_to 'Show', @photo %> </p>
+<p class="button"><%= link_to 'Back', bicycles_path(params[:bicycle_id]) %></p>
+
+
+</div>
+</div>

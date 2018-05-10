@@ -32,7 +32,7 @@ class QueriesController < ApplicationController
 
     respond_to do |format|
       if @query.save
-        format.html { redirect_to bicycle_path(@bicycle), notice: 'Query was successfully created.' }
+        format.html { redirect_to bicycle_path(@bicycle), notice: 'question sent to the owner!' }
         format.json { render :show, status: :created, location: @query }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class QueriesController < ApplicationController
     @bicycle = Bicycle.find(@query.bicycle_id)
     respond_to do |format|
       if @query.update(answer_params)
-        format.html { redirect_to @bicycle, notice: 'Query was successfully updated.' }
+        format.html { redirect_to @bicycle, notice: 'you have answered the question' }
         format.json { render :show, status: :ok, location: @query }
       else
         format.html { render :edit }

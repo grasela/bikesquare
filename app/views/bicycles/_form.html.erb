@@ -12,57 +12,57 @@
     <% end %>
 
     <div class="field">
-        <%= form.label :title %>
+        <p>       <%= form.label :title %></p>
         <%= form.text_field :title, id: :bicycle_title, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :price %>
+      <p>  <%= form.label :price %></p>
         <%= form.text_field :price, id: :bicycle_price, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :description %>
+        <p><%= form.label :description %></p>
         <%= form.text_area :description, id: :bicycle_description, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :brand %>
+       <p> <%= form.label :brand %></p>
         <%= form.text_field :brand, id: :bicycle_brand, required: true %>
     </div>
 
 
     <div class="field">
-        <%= form.label :size %>
-        <%= form.text_field :size, id: :bicycle_size, required: true %>
+       <p> <%= form.label :size %></p>
+        <%= form.select :size, ["", "XS(extrasmall)", "S(small)", "M(medium)", "L(large)", "XL(extra large)"], id: :bicycle_size, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :colour %>
+       <p> <%= form.label :colour %></p>
         <%= form.text_field :colour, id: :bicycle_colour, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :gender %>
-        <%= form.text_field :gender, id: :bicycle_gender, required: true %>
+        <p> <%= form.label :gender %> </p>
+        <%= form.select :gender,["unisex","female", "male"], id: :bicycle_gender, required: true %>
     </div>
 
     <div class="field">
-        <%= form.label :year %>
+       <p> <%= form.label :year %>
         <%= form.text_field :year, id: :bicycle_year, required: true %>
     </div>
     <% @bicycle.photos.each do |photo| %>
         <%# <%= render '/photos/form', photo: photo, bicycle: @bicycle  %1> %>
         <%=    image_tag photo.image_url(:medium) %>
-        <%= link_to 'Delete this photo', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <p class="button">  <%= link_to 'Delete this photo', photo, method: :delete, data: { confirm: 'Are you sure?' }%></p>
     <% end %> 
 
-    <%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %>
+    <p class="button"><%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %></p>
 
 
 
 
     <div class="actions">
-        <%= form.submit %>
+        <%= form.submit "continue to bicycle", class: "submit-button" %>
     </div>
 <% end %>
