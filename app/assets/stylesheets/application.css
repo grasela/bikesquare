@@ -699,6 +699,7 @@ and (max-device-width : 1024px) {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    justify-content: center;
     
 
 

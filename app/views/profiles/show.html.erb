@@ -13,18 +13,18 @@
                 <%= image_tag ("https://maps.googleapis.com/maps/api/staticmap?center=#{a.latitude},#{a.longitude}&zoom=12&size=400x200&markers=color:blue%7Clabel:#{@profile.first_name.first}%7C#{a.latitude},#{a.longitude}&key=#{ENV.fetch('GOOGLE_KEY')}") %>
 
             </div>
-        <% if policy(@profile).update? %>
-            <div class="submit">
-                <p>
-                <%= link_to 'delete location', a, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </p>
-            </div>
-            <div class="submit">
-                <p>
-                <%= link_to 'edit location', edit_address_path(a) %>
-                </p>
-            </div>
-        <% end %>
+            <% if policy(@profile).update? %>
+                <div class="submit">
+                    <p>
+                    <%= link_to 'delete location', a, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </p>
+                </div>
+                <div class="submit">
+                    <p>
+                    <%= link_to 'edit location', edit_address_path(a) %>
+                    </p>
+                </div>
+            <% end %>
 
         <% end %>
 
@@ -60,8 +60,11 @@
                 <% end %>
 
                 <% unless current_user.in?(already_reviewed) || current_user == @profile.user ||current_user.nil? %>
-                    <div class="button"> <%= link_to "Review #{@profile.username} ", new_review_path(reviewed_user: @profile.user, reviewer: current_user, user_id: @profile.user) %></div> 
-        </p>
+                    <div class="button"> 
+                        <%= link_to "Review #{@profile.username} ", new_review_path(reviewed_user: @profile.user, reviewer: current_user, user_id: @profile.user) %>
+                    </div> 
+                <% else %>
+                    <div> <p>There are no reviews</p> </div>
     <% end  %>
             </div>
         </div>

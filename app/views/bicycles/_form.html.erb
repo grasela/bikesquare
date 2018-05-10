@@ -56,8 +56,11 @@
         <%=    image_tag photo.image_url(:medium) %>
         <p class="button">  <%= link_to 'Delete this photo', photo, method: :delete, data: { confirm: 'Are you sure?' }%></p>
     <% end %> 
+    <% if @bicycle.id.nil? %>
 
-    <p class="button"><%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %></p>
+    <% else %>
+        <p class="button"><%= link_to 'Add photos', new_photo_path(bicycle_id: @bicycle.id) %></p>
+    <% end %>
 
 
 

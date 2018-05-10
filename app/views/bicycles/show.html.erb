@@ -13,7 +13,7 @@
             </div>
         <% end %>
         <% if policy(@bicycle).update? %>
-            <p class="button">    <%= link_to 'add photos', edit_bicycle_path(@bicycle)  %></p>
+            <p class="button">    <%= link_to 'add photos', new_photo_path(bicycle_id: @bicycle)  %></p>
         <% else %>
         <% end%>
         <p>

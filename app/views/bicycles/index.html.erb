@@ -25,13 +25,18 @@
                     </div>
                     <div class="details">
                         <div class="bicycle_element first"> <p>   <%= number_to_currency(bicycle.price, unit: "AUD $") %> </p> </div>
-                        <div class="bicycle_element second"> <p>   <%= bicycle.user.addresses.first.suburb %> </p> </div>
+                        <div class="bicycle_element second">
+                            <% if bicycle.user.addresses.empty? %>    
+                            <% else %>
+                                <p>   <%= bicycle.user.addresses.first.suburb  %> </p>
+                            <% end %>
+                        </div>
                         <div class="bicycle_element third"> <p>   <%= bicycle.size %></p> </div>
-                        <div class="bicycle_element forth"> <p>   <%= bicycle.type %></p> </div>
+                        <div class="bicycle_element forth"> <p>   <%= bicycle.user.addresses.first.state %></p> </div>
                     </div>
                 </div>
                 <div class="devise-login edit-buttons">
-                        <div class="bicycle_element"> <p>   <%= bicycle.description %></p> </div>
+                    <div class="bicycle_element"> <p>   <%= bicycle.description %></p> </div>
 
                 </div>
 
@@ -40,7 +45,17 @@
                     <div class="button"><%= link_to 'edit', edit_bicycle_path(bicycle) %></div>
                     <div class="button"><%= link_to 'delete', bicycle, method: :delete, data: { confirm: 'Are you sure?' } %></div>
 
+                    <% if bicycle.user.addresses.nil? %>
+                        <div class="button">
+                            <%= link_to "add location", new_address_path(user_id: current_user.id) %>
+                        </div>
+                    <% else %>
+                    <% end %>
+
+
+
                 </div>
+
             </div>
         </div>
     <% end %>
