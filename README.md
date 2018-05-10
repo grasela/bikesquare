@@ -104,6 +104,8 @@ One of the main challenges was to create a pragmatic and useful database that ca
 Having some many options for edditing/creating and managing views (bicycles, reviews, queries, profiles) posed a challenge for the views and functionality. 
 
 One of the big challenges was creating reviewers and reviewed_users as foreign key to Users table. Eventually , with the help of the docs and StackOverflow a solution has been obtained which allowed me to access both from Review table. 
+
+I have also experienced quite a few issues with heroku in regards to it's PostgreSQL integration. There has been instances where assets added through forms have not been properly saved into the database
 ## 13. Coding 
 
 Coding has been 

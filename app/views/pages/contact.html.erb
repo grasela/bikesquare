@@ -1,19 +1,23 @@
+<div class="devise-login">
+<div class="login-form">
+
+
 <%= form_for :contact do |f| %>
     <p>
-    <%= f.label :name %>
     <%= f.text_field  :name, placeholder: "name" %>
     </p>
 
     <p>
-    <%= f.label :message %>
-    <%= f.text_field  :message, placeholder: "message" %>
+    <%= f.text_area  :message, placeholder: "message" %>
     </p>
 
-    <p>
-    <%= f.submit 'Submit' %>
+    <p >
+    <%= f.submit 'send', class: "submit-button"%>
     </p>
 
 
 
 <% end %>
+</div>
+</div>
 

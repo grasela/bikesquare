@@ -529,7 +529,6 @@ and (max-device-width : 480px) {
     }
 
     .search_form {
-        position: fixed;
         width: 100%;
     }
 
@@ -537,7 +536,6 @@ and (max-device-width : 480px) {
         width: 90%;
         height: 100px;
         border: 1px solid #0D6E5C;
-        margin-top: 30em;
 
     }
 
@@ -683,9 +681,10 @@ and (max-device-width : 1024px) {
 
 .devise-login textarea {
     border-radius: 25px;
-    width: 400px;
+    width: 250px;
     height: 200px;
     border: 1px solid #008BAF;
+    text-align: center;
 
 }
 
