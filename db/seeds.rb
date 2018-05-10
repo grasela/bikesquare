@@ -167,12 +167,12 @@ Profile.create(
     user_id: 3
 )
 
-file4 = File.new(Rails.root.join('app/assets/images/1.jpg'))
-file5 = File.new(Rails.root.join('app/assets/images/2.jpg'))
-file6 = File.new(Rails.root.join('app/assets/images/3.jpg'))
-file7 = File.new(Rails.root.join('app/assets/images/4.jpg'))
-file8 = File.new(Rails.root.join('app/assets/images/5.jpg'))
-file9 = File.new(Rails.root.join('app/assets/images/6.jpg'))
+file4 = File.new(Rails.root.join('app/assets/images/1.JPG'))
+file5 = File.new(Rails.root.join('app/assets/images/2.JPG'))
+file6 = File.new(Rails.root.join('app/assets/images/3.JPG'))
+file7 = File.new(Rails.root.join('app/assets/images/4.JPG'))
+file8 = File.new(Rails.root.join('app/assets/images/5.JPG'))
+file9 = File.new(Rails.root.join('app/assets/images/6.JPG'))
 
 
 uploaded_file = uploader.upload(file4)
