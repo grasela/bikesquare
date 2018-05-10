@@ -26,14 +26,14 @@ Cycling is a lot more often a viable altrenative to our jammed raods and second 
 
 ### Current painpoints: 
 
-*Painpoint 1: sellers have to respond to multiple messages. Plenty of them are referring to the same aspect. 
-*Response: Ad board allows other users read answers to previously asked questions. 
+- Painpoint 1: sellers have to respond to multiple messages. Plenty of them are referring to the same aspect. 
+- Response: Ad board allows other users read answers to previously asked questions. 
 
-*Painpoint 2: users of Facebook Marketplace or Gumtree have to bring cash to every inspection, just in case they decide to buy the item. 
-*Response: Purchases can be done only via secure online payment system pending satisfactory inspection . The seller receives instant notification for the fund to have cleared and the buyer can come home with the bicycle 
+- Painpoint 2: users of Facebook Marketplace or Gumtree have to bring cash to every inspection, just in case they decide to buy the item. 
+- Response: Purchases can be done only via secure online payment system pending satisfactory inspection . The seller receives instant notification for the fund to have cleared and the buyer can come home with the bicycle 
 
-*Painpoint 3: BikeExchange and even Gumtree accepts offerings from official shops. These adds create unneecessary noise in the ads speace which makes it difficult to filter through
-*Response: bikeSquare accepts offers only for second hand pre owned bicles
+- Painpoint 3: BikeExchange and even Gumtree accepts offerings from official shops. These adds create unneecessary noise in the ads speace which makes it difficult to filter through
+- Response: bikeSquare accepts offers only for second hand pre owned bicles
 
 
 ## 3. Trello Board
